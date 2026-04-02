@@ -19,10 +19,10 @@ class ModelConfig:
         "mlx-community/Qwen2.5-7B-Instruct-4bit",
     ])
     max_tokens: Dict[str, int] = field(default_factory=lambda: {
-        "chat": 300,
-        "debate_cycle": 500,
-        "synthesis": 600,
-        "final_answer": 600,
+        "chat": 2000,
+        "debate_cycle": 2000,
+        "synthesis": 2000,
+        "final_answer": 2000,
     })
     temperature: float = 0.8
     top_p: float = 0.95

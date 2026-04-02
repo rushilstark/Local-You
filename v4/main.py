@@ -57,7 +57,8 @@ def main():
     # Add digital twin system prompt to engine if available
     if digital_twin and digital_twin.get_system_prompt():
         # Inject digital twin prompt into engine's system context
-        pass  # Engine will use its own system prompt, but digital twin is ready
+        engine.system_prompt = digital_twin.get_system_prompt()
+        print(f"{Color.DEBUG}✓ Digital Twin personality injected into engine{Color.RESET}")
 
     print(f"\n{Color.CHAT}{Color.BOLD}💬 Ready!{Color.RESET}")
     print(f"{Color.DEBUG}Type 'help' for commands or just start chatting.{Color.RESET}\n")

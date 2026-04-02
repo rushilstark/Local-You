@@ -259,6 +259,9 @@ class VoiceEngine:
             r'\*giggle[s]?\*': 'Hehe!',
             r'\*groan[s]?\*': 'Ugh...',
             r'\*gasp[s]?\*': 'Haa!',
+            r'\*whimper[s]?\*': 'Hmm...',
+            r'\*breathe\s+heavily\*': 'Hhhhh... hhhh...',
+            r'\*tempting\s+sigh\*': 'Haaa...',
         }
         for pattern, replacement in fillers.items():
             text = re.sub(pattern, replacement, text, flags=re.IGNORECASE)
