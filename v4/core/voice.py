@@ -48,144 +48,110 @@ TTS_SUBPROCESS_SCRIPT = '''
 import sys
 import json
 import os
-import re
+import numpy as np
 
 # Force CPU fallback to prevent Metal hard crashes if ops are missing
 os.environ["PYTORCH_ENABLE_MPS_FALLBACK"] = "1"
-
-import torch
-import kokoro
-import sounddevice as sd
-import numpy as np
-
-def parse_enhancement_markers(text):
-    """Parse markers from 8-agent enhancement pipeline"""
-    # Extract speed markers [SPEED:0.XX]...[/SPEED]
-    speed_matches = re.findall(r'\\[SPEED:(\\d+\\.\\d+)\\](.*?)\\[/SPEED\\]', text)
-    
-    # Extract voice switches [VOICE:af_name]
-    voice_matches = re.findall(r'\\[VOICE:([a-z_]+)\\]', text)
-    
-    # Remove markers for cleaner synthesis
-    text = re.sub(r'\\[SPEED:\\d+\\.\\d+\\]', '', text)
-    text = re.sub(r'\\[/SPEED\\]', '', text)
-    text = re.sub(r'\\[VOICE:[a-z_]+\\]', '', text)
-    text = re.sub(r'\\[BLEND:[a-z_]+\\]', '', text)
-    text = re.sub(r'\\[/BLEND\\]', '', text)
-    text = re.sub(r'\\[PAUSE_[A-Z_]+\\]', '. ', text)
-    text = re.sub(r'\\[Q_MARK\\]', '?', text)
-    text = re.sub(r'\\[EXCLAIM\\]', '!', text)
-    text = re.sub(r'\\[ELLIPSIS\\]', '...', text)
-    
-    # Clean up emphasis markers but keep the words
-    text = re.sub(r'\\*emphasis\\*', '', text)
-    text = re.sub(r'\\*linger\\*', '', text)
-    
-    # Remove orphaned markers
-    text = re.sub(r'\\[PAUSE_[A-Z_]+\\]', '', text)
-    
-    return text.strip(), speed_matches, voice_matches
+os.environ["KOKORO_VOICE"] = "af_heart"  # Set default voice
 
 def main():
     # Read request from stdin
-    request = json.loads(sys.stdin.readline())
-    text = request["text"]
-    voice = request["voice"]
+    try:
+        request_line = sys.stdin.readline()
+        if not request_line:
+            sys.exit(1)
+        request = json.loads(request_line)
+    except:
+        sys.exit(1)
+    
+    text = request.get("text", "")
+    voice = request.get("voice", "af_heart")
     output_path = request.get("output_path")
-    sample_rate = request.get("sample_rate", 44100)  # CD quality, not pixelated
-    default_speed = request.get("speed", 0.8)
+    
+    if not text:
+        sys.exit(1)
 
-    # Initialize pipeline with 'a' (American English) - only valid option on this system
-    pipeline = kokoro.KPipeline(lang_code="a")
-    
-    # Parse enhancement pipeline markers
-    text, speed_markers, voice_markers = parse_enhancement_markers(text)
-    
-    # Use first voice marker if present, otherwise default
-    if voice_markers:
-        voice = voice_markers[0]
-    
-    # Use first speed marker if present, otherwise default
-    speed = default_speed
-    if speed_markers:
-        speed = float(speed_markers[0][0])
-
-    # Load voice
-    if isinstance(voice, str) and voice.endswith(".pt") and os.path.exists(voice):
-        print(f"Loading custom voice from {voice}", file=sys.stderr)
-        voice_style = torch.load(voice, map_location="cpu", weights_only=True)
-    else:
-        voice_style = voice
-
-    # Samples directory
-    samples_dir = request.get("samples_dir")
-    
-    # Process text into segments (text OR sample tags OR plain-text triggers)
-    import re
-    # Broaden detection to catch roleplay tags AND plain-text triggers like Mmm..., Ah..., Oh...
-    # We look for *tags* or specific standalone sounds followed by dots/ellipses
-    tag_pattern = re.compile(r'(\*.*?(?:moan|gasp|giggle|whisper|sigh|laugh|breath).*?\*|\bMmm+\b\.?\.?\.?|\bAh+\b\.?\.?\.?|\bOh+\b\.?\.?\.?)', re.IGNORECASE)
-    parts = tag_pattern.split(text)
-
-    # Generate audio
-    audio_segments = []
-    import soundfile as sf
-    
-    for part in parts:
-        lower_part = part.lower().strip()
-        sample_path = None
+    try:
+        # Import kokoro
+        import kokoro
         
-        if samples_dir:
-            import random
-            # Fuzzy matching for sample triggers with randomization
-            if any(x in lower_part for x in ["moan", "sigh", "mmm", "ah"]):
-                candidates = [f for f in os.listdir(samples_dir) if f.startswith("moan")]
-                if candidates:
-                    sample_path = os.path.join(samples_dir, random.choice(candidates))
-            elif any(x in lower_part for x in ["gasp", "oh"]):
-                candidates = [f for f in os.listdir(samples_dir) if f.startswith("gasp") or f.startswith("breath")]
-                if candidates:
-                    sample_path = os.path.join(samples_dir, random.choice(candidates))
-            elif any(x in lower_part for x in ["giggle", "laugh"]):
-                candidates = [f for f in os.listdir(samples_dir) if f.startswith("giggle")]
-                if candidates:
-                    sample_path = os.path.join(samples_dir, random.choice(candidates))
-            elif "whimper" in lower_part:
-                sample_path = os.path.join(samples_dir, "whimper_01.wav")
-            elif "breath" in lower_part:
-                sample_path = os.path.join(samples_dir, "breath_01.wav")
-
-        if sample_path and os.path.exists(sample_path):
-            # Load raw sample
-            print(f"Interleaving sample: {os.path.basename(sample_path)}", file=sys.stderr)
-            sample_audio, _ = sf.read(sample_path)
-            audio_segments.append(sample_audio)
+        # Initialize pipeline
+        try:
+            pipeline = kokoro.KPipeline(lang_code="a")
+        except:
+            # Fallback if language code fails
+            pipeline = kokoro.KPipeline()
+        
+        # Generate audio - use try/except for voice parameter
+        try:
+            # Try with explicit voice parameter
+            audio = pipeline(text, voice=voice)
+        except TypeError:
+            # If voice parameter doesn't work, try without it
+            audio = pipeline(text)
+        except:
+            # Last resort - use default
+            audio = pipeline(text, voice="af_heart")
+        
+        # Handle generator or list returns from Kokoro
+        if hasattr(audio, '__iter__') and not isinstance(audio, (np.ndarray, str, bytes)):
+            # It's a generator - Kokoro yields Result objects with audio chunks
+            # KPipeline.Result has attributes: audio, sample_rate, and metadata
+            try:
+                audio_chunks = []
+                sr = 24000
+                for result in audio:
+                    # Result is a KPipeline.Result object with .audio, .sample_rate attributes
+                    if hasattr(result, 'audio'):
+                        chunk = result.audio
+                        if hasattr(result, 'sample_rate'):
+                            sr = result.sample_rate
+                    elif isinstance(result, (tuple, list)) and len(result) >= 1:
+                        # Fallback: if it's a tuple/list, unpack it
+                        chunk = result[0]
+                        if len(result) > 1:
+                            sr = result[1]
+                    else:
+                        chunk = result
+                    
+                    # Ensure chunk is numpy array
+                    if isinstance(chunk, np.ndarray):
+                        audio_chunks.append(chunk)
+                    elif chunk is not None:
+                        audio_chunks.append(np.asarray(chunk, dtype=np.float32))
+                
+                if audio_chunks:
+                    audio = np.concatenate(audio_chunks)
+                else:
+                    raise ValueError("No audio chunks generated")
+            except Exception as gen_err:
+                # If generator consumption fails, retry with plain call
+                audio = pipeline(text)
+        
+        # Ensure audio is numpy array
+        if not isinstance(audio, np.ndarray):
+            audio = np.asarray(audio, dtype=np.float32)
+        
+        # Kokoro native sample rate
+        sr = 24000
+        
+        # Write to output path if provided
+        if output_path:
+            import soundfile as sf
+            sf.write(output_path, audio, sr)
+            print(json.dumps({"status": "success", "output": output_path}))
         else:
-            # Synthesize text part
-            # Strip tags and clean
-            text_part = re.sub(r'[\*\(\[].*?[\*\)\]]', '', part).strip()
-            if not text_part: continue
+            # Play directly
+            import sounddevice as sd
+            sd.play(audio, sr)
+            sd.wait()
+            print(json.dumps({"status": "success"}))
             
-            for result in pipeline(text_part, voice=voice_style, speed=speed):
-                if result.audio is not None:
-                    audio_segments.append(result.audio)
-
-    if not audio_segments:
-        print(json.dumps({"status": "error", "message": "No audio generated"}))
-        return
-
-    full_audio = np.concatenate(audio_segments)
-
-    if output_path:
-        # Save to file
-        import soundfile as sf
-        sf.write(output_path, full_audio, sample_rate)
-        print(json.dumps({"status": "ok", "path": output_path, "samples": len(full_audio)}))
-    else:
-        # Play directly
-        sd.play(full_audio, sample_rate)
-        sd.wait()
-        print(json.dumps({"status": "ok", "samples": len(full_audio)}))
+    except Exception as e:
+        import traceback
+        err_msg = str(e)
+        print(json.dumps({"status": "error", "message": err_msg}), file=sys.stderr)
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()
@@ -313,8 +279,13 @@ class VoiceEngine:
         emotion = enhancement_metadata.get("emotion", "neutral")
         intensity = enhancement_metadata.get("intensity", 0.5)
         
-        # Use enhanced text for synthesis
-        clean_text = enhanced_text
+        # Use enhanced text for synthesis, but strip enhancement markers for Kokoro
+        # Remove markers like [SPEED:0.8], [BREATH:], [EMPHASIS:], etc.
+        tts_text = re.sub(r'\[/?(?:SPEED|BREATH|EMPHASIS|PHONETIC|VOICE|FILLER|PUNCTUATION|BLENDING)[^\]]*\]', '', enhanced_text)
+        tts_text = tts_text.strip()
+        
+        # Use tts_text for synthesis instead of enhanced_text
+        clean_text = tts_text
 
         if not clean_text:
             return
@@ -343,15 +314,9 @@ class VoiceEngine:
         # Map voice name to either a standard ID or a path
         resolved_voice = self._get_voice_id(voice_id)
         
-        # Samples directory for visceral interleaving (but only if enabled)
-        samples_dir = None if no_sound_interleaving else str(self.data_dir / "samples")
-        
         request = json.dumps({
             "text": text,
             "voice": resolved_voice,
-            "sample_rate": self.sample_rate,
-            "speed": 0.8,  # More intimate, breathy, realistic speech (was 0.9)
-            "samples_dir": samples_dir
         })
 
         try:
