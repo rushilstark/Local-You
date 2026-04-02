@@ -1,0 +1,83 @@
+# ============================================================================
+# EXTREME LOCAL GPT v4 — Configuration
+# ============================================================================
+# All settings in one place. No more hardcoded magic strings.
+
+model:
+  # Primary model (Q4 quantized, ~4.5GB)
+  primary: "mlx-community/Meta-Llama-3.1-8B-Instruct-abliterated-Q4-MLX"
+
+  # Fallbacks — ONLY pre-quantized MLX models (never full-precision!)
+  fallbacks:
+    - "mlx-community/Mistral-7B-Instruct-v0.3-4bit"
+    - "mlx-community/Qwen2.5-7B-Instruct-4bit"
+
+  # Generation defaults
+  max_tokens:
+    chat: 180         # Was 300 — shorter = faster, less thermal load
+    debate_cycle: 250  # Was 500
+    synthesis: 300     # Was 600
+    final_answer: 300  # Was 600
+  temperature: 0.75
+  top_p: 0.95
+
+debate:
+  # Number of debate cycles (Advocate → Critic = 1 cycle)
+  cycles: 1             # Was 2 — halves debate inference load
+  # Enable streaming output (token-by-token)
+  stream: true
+  # Quick mode: 1-cycle debate for fastest answers
+  quick_mode_cycles: 1
+
+memory:
+  # Where to store persistent data
+  data_dir: "~/.local/share/extremegpt"
+  # SQLite database for conversations
+  conversations_db: "conversations.db"
+  # JSON files for debates, patterns, wisdom
+  debates_file: "debates.json"
+  patterns_file: "patterns.json"
+  wisdom_file: "wisdom.json"
+  # Max conversation messages to keep in context
+  max_context_messages: 6  # Was 10 — less context = smaller prompt = faster
+
+persona:
+  # Minimum debates before personalization activates
+  min_debates_for_profile: 5
+  # Minimum debates before pattern recognition activates
+  min_debates_for_patterns: 10
+  # Profile confidence threshold (0-100)
+  confidence_threshold: 60
+
+features:
+  # Toggle features on/off
+  nsfw_mode: true
+  semantic_memory: true
+  wisdom_library: true
+  pattern_analysis: true
+  image_generation: false
+  voice_output: false
+  streaming: true
+
+voice:
+  # End-to-end multimodal audio model support (Qwen Omni)
+  omni_mode: false
+  omni_model: "mlx-community/Qwen3-Omni-8B-Instruct-4bit"
+  # Automatic PersonaPlex (Full-Duplex) activation on boot
+  # DISABLED — running PersonaPlex + main LLM together fills unified memory and heats GPU
+  # Type 'voice persona on' manually to activate when you want it
+  persona_auto: false
+
+display:
+  # Color theme
+  colors:
+    advocate: "\033[92m"    # Green
+    critic: "\033[91m"      # Red
+    synthesis: "\033[93m"   # Yellow
+    debug: "\033[36m"       # Cyan
+    error: "\033[95m"       # Magenta
+    memory: "\033[94m"      # Blue
+    chat: "\033[97m"        # White
+    bold: "\033[1m"
+    dim: "\033[2m"
+    reset: "\033[0m"

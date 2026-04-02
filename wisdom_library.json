@@ -1,0 +1,197 @@
+[
+  {
+    "name": "Arjuna's Dilemma",
+    "source": "Bhagavad Gita (Hindu))",
+    "dilemma": "Should I go to war against my own family and friends?",
+    "context": "Arjuna is faced with battling his cousins in a righteous war. His emotional bonds threaten to paralyze him morally.",
+    "resolution": "Krishna teaches him that duty (dharma) transcends personal attachment. Sometimes the right choice requires acting against our feelings.",
+    "lesson": "Duty may require sacrifice. Hiding from hard choices is not virtue.",
+    "themes": [
+      "duty",
+      "family",
+      "principle",
+      "sacrifice",
+      "growth"
+    ]
+  },
+  {
+    "name": "Odysseus and the Sirens",
+    "source": "Greek Mythology",
+    "dilemma": "How do I stay true to my path when temptation is irresistible?",
+    "context": "Odysseus must sail past the Sirens whose song is so beautiful that sailors abandon their purpose and crash to their death.",
+    "resolution": "Odysseus had his men tie him to the mast and fill their ears with wax. He acknowledged temptation without surrendering to it.",
+    "lesson": "Sometimes you must remove yourself from temptation. Awareness is not weakness.",
+    "themes": [
+      "temptation",
+      "discipline",
+      "goal",
+      "self-awareness",
+      "wisdom"
+    ]
+  },
+  {
+    "name": "Prometheus's Sacrifice",
+    "source": "Greek Mythology",
+    "dilemma": "Should I defy authority to help others if it costs me dearly?",
+    "context": "Prometheus steals fire from the gods to give to humanity, knowing Zeus will eternally punish him.",
+    "resolution": "Prometheus chooses humanity's need over personal safety. His suffering becomes the price of progress.",
+    "lesson": "Compassion sometimes demands sacrifice. Some things are worth the cost.",
+    "themes": [
+      "compassion",
+      "principle",
+      "defiance",
+      "progress",
+      "sacrifice"
+    ]
+  },
+  {
+    "name": "Filial Piety vs Justice",
+    "source": "Confucian Ethics",
+    "dilemma": "My parent is wrong. Do I obey family loyalty or speak truth?",
+    "context": "Confucianism teaches deep family loyalty, yet also justice. What happens when they conflict?",
+    "resolution": "Confucius teaches you must speak the truth respectfully, but harmony (finding the deeper right action) transcends both.",
+    "lesson": "True loyalty sometimes means respectfully challenging what's wrong.",
+    "themes": [
+      "family",
+      "honesty",
+      "respect",
+      "loyalty",
+      "truth"
+    ]
+  },
+  {
+    "name": "Marcus Aurelius on Duty",
+    "source": "Meditations (Stoicism)",
+    "dilemma": "How do I do the right thing when it's unpopular?",
+    "context": "Marcus Aurelius, as emperor, could have chosen comfort. Instead he constantly chose duty and virtue despite the cost.",
+    "resolution": "He accepted that virtue is its own reward. Your only responsibility is your choice and character.",
+    "lesson": "You cannot control outcomes, only your integrity. That is enough.",
+    "themes": [
+      "duty",
+      "virtue",
+      "courage",
+      "principle",
+      "character"
+    ]
+  },
+  {
+    "name": "The Middle Way",
+    "source": "Buddhist Philosophy",
+    "dilemma": "Do I pursue pleasure or deny myself? Neither?",
+    "context": "Siddhartha tried extreme asceticism and extreme indulgence. Neither led to understanding.",
+    "resolution": "He discovered the Middle Way - not between extremes, but a path that balances discipline with compassion.",
+    "lesson": "The wisest path often transcends the binary choice.",
+    "themes": [
+      "balance",
+      "wisdom",
+      "growth",
+      "compassion",
+      "understanding"
+    ]
+  },
+  {
+    "name": "The Good Samaritan",
+    "source": "Christian Parable",
+    "dilemma": "Do I help a stranger when it costs me time/resources?",
+    "context": "A man is beaten and left on the road. A priest and Levite pass by. A Samaritan (outsider/enemy) stops to help.",
+    "resolution": "Jesus teaches that compassion transcends social boundaries. The Samaritan becomes the moral exemplar.",
+    "lesson": "Compassion isn't about convenience or ideology - it's about action.",
+    "themes": [
+      "compassion",
+      "courage",
+      "connection",
+      "principle",
+      "action"
+    ]
+  },
+  {
+    "name": "Epictetus: Master and Slave",
+    "source": "Stoic Philosophy",
+    "dilemma": "How do I maintain dignity when I have no power?",
+    "context": "Epictetus was a slave. His master threatened to break his leg. He could not resist physically.",
+    "resolution": "Epictetus realized his master could break his body, but never his will or character. He remained unbroken.",
+    "lesson": "No one can control your mind. That's where freedom truly lies.",
+    "themes": [
+      "freedom",
+      "dignity",
+      "character",
+      "courage",
+      "inner strength"
+    ]
+  },
+  {
+    "name": "Wu Wei - Effortless Action",
+    "source": "Tao Te Ching",
+    "dilemma": "Should I force change or align with what is?",
+    "context": "Taoism teaches non-action (wu wei) - not laziness, but acting in harmony with the nature of things.",
+    "resolution": "Water doesn't fight the mountain. It flows around it. Yet it shapes stone. Effortless action is most powerful.",
+    "lesson": "Fighting reality exhausts you. Wisdom means understanding the flow.",
+    "themes": [
+      "wisdom",
+      "balance",
+      "acceptance",
+      "growth",
+      "power"
+    ]
+  },
+  {
+    "name": "Hillel's Teachings",
+    "source": "Pirkei Avot (Jewish Ethics)",
+    "dilemma": "How do I balance self-interest with community?",
+    "context": "Hillel taught: 'If I am not for myself, who will be for me? But if I am only for myself, what am I?'",
+    "resolution": "The answer lies in integration - taking care of yourself while remaining connected to and serving others.",
+    "lesson": "Self-care and service aren't opposed - they're interdependent.",
+    "themes": [
+      "balance",
+      "community",
+      "self-worth",
+      "connection",
+      "wisdom"
+    ]
+  },
+  {
+    "name": "Sartre: Freedom and Responsibility",
+    "source": "Existentialism",
+    "dilemma": "If I'm truly free to choose, how do I know what's right?",
+    "context": "Sartre argued we are 'condemned to be free' - no God or nature determines our choices.",
+    "resolution": "With freedom comes radical responsibility. You cannot hide behind rules or circumstances. You must choose.",
+    "lesson": "Your freedom is your burden and your dignity. Own it.",
+    "themes": [
+      "freedom",
+      "responsibility",
+      "courage",
+      "authenticity",
+      "choice"
+    ]
+  },
+  {
+    "name": "Aristotle's Phronesis",
+    "source": "Virtue Ethics",
+    "dilemma": "How do I know what virtue requires in this specific situation?",
+    "context": "Virtue isn't a set of rules. Courage looks different in different contexts. Generosity isn't the same everywhere.",
+    "resolution": "Phronesis (practical wisdom) is the ability to perceive the right action in the specific circumstance.",
+    "lesson": "Maturity is learning to perceive what the moment requires.",
+    "themes": [
+      "wisdom",
+      "virtue",
+      "discernment",
+      "growth",
+      "character"
+    ]
+  },
+  {
+    "name": "The Seventh Generation Principle",
+    "source": "Indigenous Wisdom",
+    "dilemma": "Who am I responsible to in my decisions?",
+    "context": "Many indigenous cultures teach that decisions should consider impact seven generations into the future.",
+    "resolution": "You are responsible not just to yourself, but to those who will inherit the world your choices create.",
+    "lesson": "Think beyond your lifetime. You are part of a chain.",
+    "themes": [
+      "responsibility",
+      "justice",
+      "community",
+      "future",
+      "wisdom"
+    ]
+  }
+]

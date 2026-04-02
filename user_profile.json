@@ -1,0 +1,35 @@
+{
+  "name": "User",
+  "gender": "male",
+  "sexual_orientation": "straight",
+  "age": null,
+  "occupation": null,
+  "interests": [],
+  "values": [],
+  "communication_style": "direct",
+  "preferences": {
+    "voice_enabled": true,
+    "voice_name": "Samantha",
+    "voice_speed": 180,
+    "speak_responses": true,
+    "detail_level": "explicit",
+    "debate_mode": "auto",
+    "remember_context": true,
+    "save_conversations": true,
+    "nsfw_always": true,
+    "learn_style": true
+  },
+  "stats": {
+    "conversations": 6,
+    "debates": 0,
+    "learning_level": 3
+  },
+  "learned_preferences": {
+    "response_style": "unfiltered",
+    "topics": [
+      "i feel sad and lonely. help me",
+      "help me. dont dirty talk"
+    ],
+    "feedback_patterns": {}
+  }
+}
