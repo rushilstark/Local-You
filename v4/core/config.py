@@ -75,7 +75,6 @@ class PersonaConfig:
 @dataclass
 class VoiceConfig:
     omni_mode: bool = False
-    omni_model: str = "mlx-community/Qwen3-Omni-8B-Instruct-4bit"
     persona_auto: bool = False
 
 

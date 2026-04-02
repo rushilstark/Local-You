@@ -39,7 +39,7 @@ try:
     )
     print(f"{Color.DEBUG}✓ Digital Twin initialized from diary{Color.RESET}")
 except Exception as e:
-    print(f"{Color.WARNING}⚠ Digital Twin skipped (no diary yet): {e}{Color.RESET}")
+    print(f"{Color.SYNTHESIS}⚠ Digital Twin skipped (no diary yet): {e}{Color.RESET}")
     digital_twin = None
 
 

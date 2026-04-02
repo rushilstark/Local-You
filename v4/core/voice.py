@@ -92,7 +92,7 @@ def main():
     text = request["text"]
     voice = request["voice"]
     output_path = request.get("output_path")
-    sample_rate = request.get("sample_rate", 24000)
+    sample_rate = request.get("sample_rate", 44100)  # CD quality, not pixelated
     default_speed = request.get("speed", 0.8)
 
     # Initialize pipeline with 'a' (American English) - only valid option on this system
@@ -217,7 +217,7 @@ class VoiceEngine:
     def __init__(self, config: AppConfig):
         self.config = config
         self.voice = self.VOICES["default"]
-        self.sample_rate = 24000
+        self.sample_rate = 44100  # CD quality
         self.data_dir = config.memory.resolved_data_dir / "voice"
         self.data_dir.mkdir(parents=True, exist_ok=True)
 
