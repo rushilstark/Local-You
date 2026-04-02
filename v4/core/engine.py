@@ -158,6 +158,16 @@ class Engine:
         except Exception as e:
             print(f"{Color.DEBUG}  ⚠ Knowledge Graph: {e}{Color.RESET}")
 
+        # PERSONALITY EXTRACTION: Build custom system prompt from actual diary voice
+        try:
+            from core.personality_extractor import PersonalityExtractor
+            extractor = PersonalityExtractor(Path("data/diary"))
+            self.system_prompt = extractor.build_system_prompt()
+            print(f"{Color.PERSONALITY}  ✓ Personality extracted from diary (custom system prompt){Color.RESET}")
+        except Exception as e:
+            print(f"{Color.PERSONALITY}  ⚠ Personality extraction: {e}{Color.RESET}")
+            self.system_prompt = None
+
         # Omni Voice disabled - removed Qwen3
         self.omni_pipeline = None
 

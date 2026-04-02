@@ -98,6 +98,7 @@ class Color:
     ERROR = '\033[95m'
     MEMORY = '\033[94m'
     CHAT = '\033[97m'
+    PERSONALITY = '\033[93m'
     BOLD = '\033[1m'
     DIM = '\033[2m'
     RESET = '\033[0m'

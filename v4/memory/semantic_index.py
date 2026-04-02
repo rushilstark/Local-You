@@ -109,29 +109,84 @@ class SemanticDiaryIndex:
                 self.passages.append(embedded)
 
     def _chunk_text(self, text: str, source_file: str) -> List[Dict]:
-        """Split text into meaningful chunks with metadata"""
+        """Split text into meaningful chunks - but KEEP LONG ESSAYS WHOLE"""
         chunks = []
         
-        # Split by paragraph (double newline)
-        paragraphs = text.split('\n\n')
+        # First, split by titled sections (all caps, short lines)
+        sections = []
+        current_section = []
+        section_title = ""
         
+        for line in text.split('\n'):
+            # Detect section headers (all caps, < 50 chars)
+            if line.strip().isupper() and len(line.strip()) < 50 and line.strip():
+                # Save previous section if exists
+                if current_section:
+                    section_content = '\n'.join(current_section).strip()
+                    if section_content:
+                        sections.append({
+                            "title": section_title,
+                            "content": section_content
+                        })
+                section_title = line.strip()
+                current_section = []
+            else:
+                current_section.append(line)
+        
+        # Don't forget last section
+        if current_section:
+            section_content = '\n'.join(current_section).strip()
+            if section_content:
+                sections.append({
+                    "title": section_title,
+                    "content": section_content
+                })
+        
+        # Now process each section: LONG essays stay WHOLE, short pieces get chunked
         char_offset = 0
-        for para in paragraphs:
-            cleaned = para.strip()
+        for section in sections:
+            content = section["content"]
             
-            # Keep meaningful paragraphs (80-500 chars)
-            if 80 <= len(cleaned) <= 500:
+            if not content or len(content) < 20:
+                continue
+            
+            # If section is LONG (essay-length: > 1500 chars), keep it WHOLE
+            if len(content) > 1500:
                 chunks.append({
-                    "text": cleaned,
+                    "text": content,
                     "metadata": {
                         "source": Path(source_file).name,
+                        "section": section["title"],
                         "char_index": char_offset,
-                        "word_count": len(cleaned.split()),
-                        "length": len(cleaned)
+                        "word_count": len(content.split()),
+                        "length": len(content),
+                        "type": "essay"  # Mark as full essay
                     }
                 })
+            else:
+                # SHORT content: chunk by paragraphs
+                paragraphs = content.split('\n\n')
+                
+                for para in paragraphs:
+                    cleaned = para.strip()
+                    
+                    # Keep everything > 10 chars (short poems, thoughts, lines)
+                    if cleaned and len(cleaned) > 10:
+                        chunks.append({
+                            "text": cleaned,
+                            "metadata": {
+                                "source": Path(source_file).name,
+                                "section": section["title"],
+                                "char_index": char_offset,
+                                "word_count": len(cleaned.split()),
+                                "length": len(cleaned),
+                                "type": "paragraph"
+                            }
+                        })
+                    
+                    char_offset += len(para) + 2
             
-            char_offset += len(para) + 2  # +2 for \n\n
+            char_offset += len(content) + 2
 
         return chunks
 
@@ -274,19 +329,25 @@ class SemanticDiaryIndex:
     def get_context(self, user_message: str, num_passages: int = 3) -> str:
         """
         Get formatted diary context to include in LLM prompt
-        
-        Returns formatted string ready for injection into system prompt
+        IMPORTANT: Shows actual quotes to encourage real engagement
         """
         passages = self.retrieve(user_message, top_k=num_passages)
         
         if not passages:
             return ""
         
-        context = "\n[📖 DIARY CONTEXT]\n"
+        context = "\n[📖 RELEVANT DIARY QUOTES - Engage with these specifically]\n"
         for i, passage in enumerate(passages, 1):
-            # Truncate if too long
-            display_text = passage if len(passage) <= 200 else passage[:197] + "..."
-            context += f"  {i}. {display_text}\n"
+            # Show more of the passage (min 150 chars to see real meaning)
+            if len(passage) <= 300:
+                display_text = passage
+            else:
+                # Show start + middle for long passages
+                display_text = passage[:200] + "\n...[middle excerpt]...\n" + passage[-100:]
+            
+            context += f"\n{i}. \"{display_text}\"\n"
+        
+        context += "\n[INSTRUCTION: Quote from these passages in your response. Engage with specific lines, not vague summaries.]\n"
         
         return context
 
