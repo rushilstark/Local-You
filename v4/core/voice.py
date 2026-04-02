@@ -22,7 +22,6 @@ from pathlib import Path
 from typing import Optional, Tuple
 
 from core.config import AppConfig, Color
-from core.voice_enhancement import VoiceEnhancementPipeline
 
 # ── Optional imports (graceful degradation) ──
 
@@ -190,8 +189,8 @@ class VoiceEngine:
         self._playing = False
         self._play_thread = None
         
-        # Initialize 8-agent voice enhancement pipeline
-        self.enhancement_pipeline = VoiceEnhancementPipeline()
+        # Enhancement pipeline disabled - was causing unwanted text injection
+        # self.enhancement_pipeline = VoiceEnhancementPipeline()
 
         # Write the TTS subprocess script to a temp file
         self._tts_script_path = self.data_dir / "_tts_worker.py"
@@ -207,7 +206,7 @@ class VoiceEngine:
 
         if self._has_tts:
             print(f"{Color.DEBUG}  ✓ Voice TTS: Kokoro (voice: {self.voice}) [subprocess mode]{Color.RESET}")
-            print(f"{Color.DEBUG}  ✓ Voice Enhancement: 8-agent pipeline (emotion→speed→voice→fillers→punctuation→emphasis→phonetics→blending){Color.RESET}")
+            print(f"{Color.DEBUG}  ✓ Voice Enhancement: Natural breathing pauses (ellipsis-based){Color.RESET}")
         else:
             print(f"{Color.DEBUG}  ⚠ Voice TTS: not available (pip install kokoro){Color.RESET}")
 
@@ -274,18 +273,15 @@ class VoiceEngine:
         clean_text = re.sub(r'\s+', ' ', clean_text).strip()
         clean_text = re.sub(r'^[\s.,!?]+$', '', clean_text)
 
-        # ✨ ENHANCEMENT: Run through 8-agent pipeline for maximum voice quality
-        enhanced_text, enhancement_metadata = self.enhancement_pipeline.enhance_text(clean_text)
-        emotion = enhancement_metadata.get("emotion", "neutral")
-        intensity = enhancement_metadata.get("intensity", 0.5)
-        
-        # Use enhanced text for synthesis, but strip enhancement markers for Kokoro
-        # Remove markers like [SPEED:0.8], [BREATH:], [EMPHASIS:], etc.
-        tts_text = re.sub(r'\[/?(?:SPEED|BREATH|EMPHASIS|PHONETIC|VOICE|FILLER|PUNCTUATION|BLENDING)[^\]]*\]', '', enhanced_text)
-        tts_text = tts_text.strip()
-        
-        # Use tts_text for synthesis instead of enhanced_text
-        clean_text = tts_text
+        # ✨ ENHANCEMENT: Add natural breathing pauses (NOT saying "breath")
+        # Add ellipsis after periods to create natural pause effect in TTS
+        tts_text = clean_text.replace(". ", "... ")
+        tts_text = tts_text.replace("! ", "!! ")
+        tts_text = tts_text.replace("? ", "?? ")
+        # Add slight pauses within longer sentences (after commas)
+        tts_text = tts_text.replace(", ", ", ... ")
+        # Clean up any triple+ spaces
+        tts_text = re.sub(r'\s+', ' ', tts_text).strip()
 
         if not clean_text:
             return
