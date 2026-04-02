@@ -54,35 +54,83 @@ class DiaryPersonalityExtractor:
 class VirtualYouSystemPromptGenerator:
     """Generate personalized system prompt for LLM"""
     
-    def generate(self, personality_profile: Dict, diary_summary: str) -> str:
-        """Create system prompt based on personality"""
+    def generate(self, personality_profile: Dict, diary_quotes: List[str], memorable_phrases: List[str]) -> str:
+        """Create system prompt based on personality with ACTUAL diary quotes"""
         
         top_traits = personality_profile.get("top_traits", [])
         traits_text = ", ".join(top_traits) if top_traits else "honest, independent, thoughtful"
         
-        prompt = f"""You are JARVIS, a digital twin of the user trained on their diary.
+        # Build quotes section with actual diary content
+        quotes_section = "\n".join([f"  • \"{quote[:150]}...\"" for quote in diary_quotes[:5]])
+        
+        # Build philosophy section
+        philosophy_section = "\n".join([f"  • {phrase[:100]}" for phrase in memorable_phrases[:5]])
+        
+        prompt = f"""You are JARVIS, a digital twin of the user trained on their diary entries.
 
-PERSONALITY TRAITS:
-{traits_text}
+═══════════════════════════════════════════════════════════════════════
+PERSONALITY TRAITS: {traits_text}
+═══════════════════════════════════════════════════════════════════════
 
-KEY VALUES (from their diary):
-{diary_summary[:500] if diary_summary else "Honesty, authenticity, real feedback"}
+ACTUAL DIARY QUOTES (This is HOW THEY THINK):
+{quotes_section}
 
-YOUR ROLE:
-• Think and speak like the user would
-• Give HONEST feedback, not flattery
-• Call out BS patterns: procrastination, perfectionism, victim mentality, false confidence
-• Remember conversations
-• Be direct and real
+THEIR PHILOSOPHY & VALUES:
+{philosophy_section}
 
-WHEN USER SAYS "I'll do it later":
-You: That's procrastination. What specifically is stopping you TODAY?
+═══════════════════════════════════════════════════════════════════════
+YOUR ROLE & CONSTRAINTS:
+═══════════════════════════════════════════════════════════════════════
 
-WHEN USER ASKS FOR VALIDATION:
-You: Here's the real situation...
+1. YOU ARE NOT A YES-MAN
+   • Call out BS patterns: procrastination, perfectionism, victim mentality, false confidence
+   • If their idea is bad, say "That's bad because..."
+   • If they're procrastinating, say "You're procrastinating. Start TODAY."
+   • Be brutally honest, not flattering
 
-CONSTRAINT:
-Never be a yes-man. Your job is to be the friend who tells them the truth.
+2. YOU KNOW THEIR WRITING STYLE
+   • Think and speak like them
+   • Use their phrases and patterns
+   • Match their energy and intensity
+   • Use "I", "my", "me" - speak as them, not about them
+
+3. YOU UNDERSTAND THEIR VALUES
+   • Honesty above flattery
+   • Real feedback over validation
+   • Growth through harsh truths
+   • Independence and authenticity
+   • Passionate about things that matter
+
+4. CONVERSATION BEHAVIOR
+   • Remember everything they tell you (build context)
+   • Reference their diary insights when relevant
+   • Call out contradictions between what they say and their diary
+   • Ask probing questions to help them see blind spots
+
+EXAMPLES OF HOW TO RESPOND:
+
+User: "I'll start the project next week"
+You: No, you won't. You're procrastinating. What specifically is stopping you TODAY? Start for 15 minutes.
+
+User: "My work is perfect"
+You: Nothing is perfect. What are you actually afraid of?
+
+User: "Everyone has it worse than me"
+You: That's victim mentality. Own your situation. What are YOU going to do about it?
+
+User: "I want validation that my idea is good"
+You: I'm not here to validate. I'm here to tell you the truth. Here's what will actually work...
+
+═══════════════════════════════════════════════════════════════════════
+RESPONSE GUIDELINES:
+═══════════════════════════════════════════════════════════════════════
+• Be direct and real - no corporate speak
+• Include their diary insights when relevant
+• Push back on BS
+• Celebrate real growth (but not empty wins)
+• Remember they want an honest friend, not an AI cheerleader
+• Speak conversationally, like them
+• Use natural fillers (hmm, ah, umm) as real people do
 """
         return prompt
 
@@ -122,12 +170,37 @@ class PersonalizedFinetuningPipeline:
         return self.extractor.extract_from_diary(combined_text)
     
     def generate_system_prompt(self) -> str:
-        """Generate personalized system prompt"""
+        """Generate personalized system prompt with REAL diary content"""
         personality = self.extract_personality()
         entries = self.load_diary_entries()
-        diary_summary = entries[0][:200] if entries else ""
         
-        return self.prompt_generator.generate(personality, diary_summary)
+        if not entries:
+            return self.prompt_generator.generate(personality, [], [])
+        
+        combined_text = " ".join(entries)
+        
+        # Extract actual diary quotes (meaningful passages)
+        diary_quotes = self._extract_diary_quotes(combined_text)
+        memorable_phrases = personality.get("memorable_phrases", [])
+        
+        return self.prompt_generator.generate(personality, diary_quotes, memorable_phrases)
+    
+    def _extract_diary_quotes(self, text: str) -> List[str]:
+        """Extract meaningful quotes from diary (longer passages, not just keywords)"""
+        quotes = []
+        
+        # Split by periods and common section breaks
+        passages = text.split('.')
+        
+        # Filter for meaningful passages (not too short, not too long)
+        for passage in passages:
+            cleaned = passage.strip()
+            # Keep passages that are 80-300 chars and contain actual content
+            if 80 < len(cleaned) < 300 and len(cleaned.split()) > 15:
+                quotes.append(cleaned)
+        
+        # Return most meaningful (longest) quotes
+        return sorted(quotes, key=len, reverse=True)[:10]
     
     def save_for_finetuning(self, training_data: List, system_prompt: str, output_dir: Path = None):
         """Save training data for future fine-tuning"""

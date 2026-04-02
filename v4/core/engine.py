@@ -14,6 +14,7 @@ Carries over ALL v3 features:
 
 import re
 from typing import Optional
+from pathlib import Path
 
 from core.config import AppConfig, Color
 from core.inference import InferenceEngine, validate_unfiltered_response
@@ -45,6 +46,7 @@ class Engine:
         self.twin = None
         self.trainer = None
         self.system_prompt = None  # Will be set by digital twin if available
+        self.diary_rag = None  # Diary-based retrieval for context
 
         self._init_subsystems()
 
@@ -126,9 +128,17 @@ class Engine:
                 print(f"{Color.DEBUG}  ✓ Voice: Kokoro (44.1kHz CD quality){Color.RESET}")
             except Exception as e:
                 print(f"{Color.ERROR}Failed to load Voice Engine: {e}{Color.RESET}")
-                self.voice = None
-        else:
-            self.voice = None
+
+        # Diary-based RAG for dynamic context retrieval
+        try:
+            import sys
+            sys.path.insert(0, str(Path(__file__).parent.parent.parent))
+            from diary_rag import DiaryRAG
+            self.diary_rag = DiaryRAG(Path("data/diary"))
+            if self.diary_rag.indexed:
+                print(f"{Color.DEBUG}  ✓ Diary RAG: {len(self.diary_rag.passages)} passages indexed{Color.RESET}")
+        except Exception as e:
+            print(f"{Color.DEBUG}  ⚠ Diary RAG: {e}{Color.RESET}")
 
         # Omni Voice disabled - removed Qwen3
         self.omni_pipeline = None
@@ -260,6 +270,13 @@ class Engine:
                         preview += "..."
                     context_text += f"{role}: {preview}\n"
                 context_text += "\n"
+
+        # Add diary context via RAG if available
+        diary_context = ""
+        if self.diary_rag:
+            diary_context = self.diary_rag.get_context(user_message)
+            if diary_context:
+                context_text += diary_context + "\n"
 
         # Check for NSFW intent in standard chat
         is_explicit = False
