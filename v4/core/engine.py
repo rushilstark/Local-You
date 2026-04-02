@@ -47,6 +47,8 @@ class Engine:
         self.trainer = None
         self.system_prompt = None  # Will be set by digital twin if available
         self.diary_rag = None  # Diary-based retrieval for context
+        self.semantic_index = None  # Semantic search with embeddings (Phase 1)
+        self.knowledge_graph = None  # Memory connections graph (Phase 4)
 
         self._init_subsystems()
 
@@ -139,6 +141,22 @@ class Engine:
                 print(f"{Color.DEBUG}  ✓ Diary RAG: {len(self.diary_rag.passages)} passages indexed{Color.RESET}")
         except Exception as e:
             print(f"{Color.DEBUG}  ⚠ Diary RAG: {e}{Color.RESET}")
+
+        # PHASE 1: Semantic Index for intelligent context retrieval
+        try:
+            from memory.semantic_index import SemanticDiaryIndex
+            self.semantic_index = SemanticDiaryIndex(Path("data/diary"), Path(".cache/semantic_embeddings"))
+            print(f"{Color.DEBUG}  ✓ Semantic Index: {len(self.semantic_index.passages)} passages with embeddings{Color.RESET}")
+        except Exception as e:
+            print(f"{Color.DEBUG}  ⚠ Semantic Index: {e}{Color.RESET}")
+
+        # PHASE 4: Knowledge Graph for memory connections
+        try:
+            from memory.knowledge_graph import DiaryKnowledgeGraph
+            self.knowledge_graph = DiaryKnowledgeGraph(Path("data/diary"), Path(".cache/knowledge_graph.json"))
+            print(f"{Color.DEBUG}  ✓ Knowledge Graph: {len(self.knowledge_graph.nodes)} nodes, {len(self.knowledge_graph.edges)} edges{Color.RESET}")
+        except Exception as e:
+            print(f"{Color.DEBUG}  ⚠ Knowledge Graph: {e}{Color.RESET}")
 
         # Omni Voice disabled - removed Qwen3
         self.omni_pipeline = None
@@ -277,6 +295,26 @@ class Engine:
             diary_context = self.diary_rag.get_context(user_message)
             if diary_context:
                 context_text += diary_context + "\n"
+
+        # Add SEMANTIC context (Phase 1: Intelligent retrieval with embeddings)
+        semantic_context = ""
+        if self.semantic_index:
+            try:
+                semantic_context = self.semantic_index.get_context(user_message, num_passages=3)
+                if semantic_context:
+                    context_text += semantic_context + "\n"
+            except Exception as e:
+                pass  # Silently skip if semantic search fails
+
+        # Add KNOWLEDGE GRAPH context (Phase 4: Pattern detection and smart recall)
+        kg_context = ""
+        if self.knowledge_graph:
+            try:
+                kg_context = self.knowledge_graph.get_smart_recall(user_message)
+                if kg_context:
+                    context_text += kg_context + "\n"
+            except Exception as e:
+                pass  # Silently skip if knowledge graph fails
 
         # Check for NSFW intent in standard chat
         is_explicit = False
