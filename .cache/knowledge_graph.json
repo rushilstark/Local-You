@@ -5,7 +5,7 @@
       "label": "Rushil",
       "node_type": "person",
       "description": "",
-      "frequency": 44,
+      "frequency": 4,
       "first_mentioned": "diary",
       "attributes": null
     },
@@ -14,16 +14,7 @@
       "label": "You",
       "node_type": "person",
       "description": "",
-      "frequency": 914,
-      "first_mentioned": "diary",
-      "attributes": null
-    },
-    "person_they": {
-      "id": "person_they",
-      "label": "They",
-      "node_type": "person",
-      "description": "",
-      "frequency": 287,
+      "frequency": 297,
       "first_mentioned": "diary",
       "attributes": null
     },
@@ -32,34 +23,25 @@
       "label": "People",
       "node_type": "person",
       "description": "",
-      "frequency": 275,
+      "frequency": 43,
       "first_mentioned": "diary",
       "attributes": null
     },
-    "person_dad": {
-      "id": "person_dad",
-      "label": "Dad",
+    "person_they": {
+      "id": "person_they",
+      "label": "They",
       "node_type": "person",
       "description": "",
-      "frequency": 18,
+      "frequency": 65,
       "first_mentioned": "diary",
       "attributes": null
     },
-    "person_parents": {
-      "id": "person_parents",
-      "label": "Parents",
+    "person_brother": {
+      "id": "person_brother",
+      "label": "Brother",
       "node_type": "person",
       "description": "",
-      "frequency": 29,
-      "first_mentioned": "diary",
-      "attributes": null
-    },
-    "person_father": {
-      "id": "person_father",
-      "label": "Father",
-      "node_type": "person",
-      "description": "",
-      "frequency": 10,
+      "frequency": 1,
       "first_mentioned": "diary",
       "attributes": null
     },
@@ -68,13 +50,13 @@
       "label": "Friend",
       "node_type": "person",
       "description": "",
-      "frequency": 25,
+      "frequency": 3,
       "first_mentioned": "diary",
       "attributes": null
     },
-    "person_brother": {
-      "id": "person_brother",
-      "label": "Brother",
+    "person_parents": {
+      "id": "person_parents",
+      "label": "Parents",
       "node_type": "person",
       "description": "",
       "frequency": 8,
@@ -86,7 +68,16 @@
       "label": "Mother",
       "node_type": "person",
       "description": "",
-      "frequency": 6,
+      "frequency": 1,
+      "first_mentioned": "diary",
+      "attributes": null
+    },
+    "person_dad": {
+      "id": "person_dad",
+      "label": "Dad",
+      "node_type": "person",
+      "description": "",
+      "frequency": 4,
       "first_mentioned": "diary",
       "attributes": null
     },
@@ -95,79 +86,16 @@
       "label": "Girlfriend",
       "node_type": "person",
       "description": "",
-      "frequency": 15,
+      "frequency": 1,
       "first_mentioned": "diary",
       "attributes": null
     },
-    "person_sister": {
-      "id": "person_sister",
-      "label": "Sister",
+    "person_father": {
+      "id": "person_father",
+      "label": "Father",
       "node_type": "person",
       "description": "",
-      "frequency": 10,
-      "first_mentioned": "diary",
-      "attributes": null
-    },
-    "person_mom": {
-      "id": "person_mom",
-      "label": "Mom",
-      "node_type": "person",
-      "description": "",
-      "frequency": 12,
-      "first_mentioned": "diary",
-      "attributes": null
-    },
-    "person_wife": {
-      "id": "person_wife",
-      "label": "Wife",
-      "node_type": "person",
-      "description": "",
-      "frequency": 8,
-      "first_mentioned": "diary",
-      "attributes": null
-    },
-    "place_there": {
-      "id": "place_there",
-      "label": "There",
-      "node_type": "place",
-      "description": "",
-      "frequency": 189,
-      "first_mentioned": "diary",
-      "attributes": null
-    },
-    "place_place": {
-      "id": "place_place",
-      "label": "Place",
-      "node_type": "place",
-      "description": "",
-      "frequency": 37,
-      "first_mentioned": "diary",
-      "attributes": null
-    },
-    "place_room": {
-      "id": "place_room",
-      "label": "Room",
-      "node_type": "place",
-      "description": "",
-      "frequency": 19,
-      "first_mentioned": "diary",
-      "attributes": null
-    },
-    "place_city": {
-      "id": "place_city",
-      "label": "City",
-      "node_type": "place",
-      "description": "",
-      "frequency": 4,
-      "first_mentioned": "diary",
-      "attributes": null
-    },
-    "place_street": {
-      "id": "place_street",
-      "label": "Street",
-      "node_type": "place",
-      "description": "",
-      "frequency": 3,
+      "frequency": 1,
       "first_mentioned": "diary",
       "attributes": null
     },
@@ -176,7 +104,34 @@
       "label": "Here",
       "node_type": "place",
       "description": "",
-      "frequency": 63,
+      "frequency": 13,
+      "first_mentioned": "diary",
+      "attributes": null
+    },
+    "place_there": {
+      "id": "place_there",
+      "label": "There",
+      "node_type": "place",
+      "description": "",
+      "frequency": 38,
+      "first_mentioned": "diary",
+      "attributes": null
+    },
+    "place_place": {
+      "id": "place_place",
+      "label": "Place",
+      "node_type": "place",
+      "description": "",
+      "frequency": 8,
+      "first_mentioned": "diary",
+      "attributes": null
+    },
+    "place_room": {
+      "id": "place_room",
+      "label": "Room",
+      "node_type": "place",
+      "description": "",
+      "frequency": 2,
       "first_mentioned": "diary",
       "attributes": null
     },
@@ -185,7 +140,7 @@
       "label": "Home",
       "node_type": "place",
       "description": "",
-      "frequency": 43,
+      "frequency": 1,
       "first_mentioned": "diary",
       "attributes": null
     },
@@ -194,50 +149,32 @@
       "label": "Office",
       "node_type": "place",
       "description": "",
-      "frequency": 13,
+      "frequency": 2,
       "first_mentioned": "diary",
       "attributes": null
     },
-    "place_house": {
-      "id": "place_house",
-      "label": "House",
+    "place_street": {
+      "id": "place_street",
+      "label": "Street",
       "node_type": "place",
       "description": "",
-      "frequency": 16,
+      "frequency": 1,
       "first_mentioned": "diary",
       "attributes": null
     },
-    "place_andaman": {
-      "id": "place_andaman",
-      "label": "Andaman",
-      "node_type": "place",
+    "problem_pain": {
+      "id": "problem_pain",
+      "label": "Pain",
+      "node_type": "problem",
       "description": "",
-      "frequency": 5,
+      "frequency": 23,
       "first_mentioned": "diary",
       "attributes": null
     },
-    "place_beach": {
-      "id": "place_beach",
-      "label": "Beach",
-      "node_type": "place",
-      "description": "",
-      "frequency": 9,
-      "first_mentioned": "diary",
-      "attributes": null
-    },
-    "place_india": {
-      "id": "place_india",
-      "label": "India",
-      "node_type": "place",
-      "description": "",
-      "frequency": 5,
-      "first_mentioned": "diary",
-      "attributes": null
-    },
-    "place_delhi": {
-      "id": "place_delhi",
-      "label": "Delhi",
-      "node_type": "place",
+    "problem_fail": {
+      "id": "problem_fail",
+      "label": "Fail",
+      "node_type": "problem",
       "description": "",
       "frequency": 1,
       "first_mentioned": "diary",
@@ -248,76 +185,13 @@
       "label": "Scared",
       "node_type": "problem",
       "description": "",
-      "frequency": 82,
-      "first_mentioned": "diary",
-      "attributes": null
-    },
-    "problem_pain": {
-      "id": "problem_pain",
-      "label": "Pain",
-      "node_type": "problem",
-      "description": "",
-      "frequency": 102,
-      "first_mentioned": "diary",
-      "attributes": null
-    },
-    "problem_fear": {
-      "id": "problem_fear",
-      "label": "Fear",
-      "node_type": "problem",
-      "description": "",
-      "frequency": 9,
-      "first_mentioned": "diary",
-      "attributes": null
-    },
-    "problem_fail": {
-      "id": "problem_fail",
-      "label": "Fail",
-      "node_type": "problem",
-      "description": "",
-      "frequency": 3,
+      "frequency": 1,
       "first_mentioned": "diary",
       "attributes": null
     },
     "problem_struggle": {
       "id": "problem_struggle",
       "label": "Struggle",
-      "node_type": "problem",
-      "description": "",
-      "frequency": 2,
-      "first_mentioned": "diary",
-      "attributes": null
-    },
-    "problem_weed": {
-      "id": "problem_weed",
-      "label": "Weed",
-      "node_type": "problem",
-      "description": "",
-      "frequency": 12,
-      "first_mentioned": "diary",
-      "attributes": null
-    },
-    "problem_weak": {
-      "id": "problem_weak",
-      "label": "Weak",
-      "node_type": "problem",
-      "description": "",
-      "frequency": 2,
-      "first_mentioned": "diary",
-      "attributes": null
-    },
-    "problem_addicted": {
-      "id": "problem_addicted",
-      "label": "Addicted",
-      "node_type": "problem",
-      "description": "",
-      "frequency": 1,
-      "first_mentioned": "diary",
-      "attributes": null
-    },
-    "problem_anxious": {
-      "id": "problem_anxious",
-      "label": "Anxious",
       "node_type": "problem",
       "description": "",
       "frequency": 1,
@@ -329,25 +203,7 @@
       "label": "Do",
       "node_type": "solution",
       "description": "",
-      "frequency": 208,
-      "first_mentioned": "diary",
-      "attributes": null
-    },
-    "solution_face": {
-      "id": "solution_face",
-      "label": "Face",
-      "node_type": "solution",
-      "description": "",
-      "frequency": 23,
-      "first_mentioned": "diary",
-      "attributes": null
-    },
-    "solution_begin": {
-      "id": "solution_begin",
-      "label": "Begin",
-      "node_type": "solution",
-      "description": "",
-      "frequency": 1,
+      "frequency": 41,
       "first_mentioned": "diary",
       "attributes": null
     },
@@ -356,16 +212,16 @@
       "label": "Change",
       "node_type": "solution",
       "description": "",
-      "frequency": 49,
+      "frequency": 6,
       "first_mentioned": "diary",
       "attributes": null
     },
-    "solution_learn": {
-      "id": "solution_learn",
-      "label": "Learn",
+    "solution_face": {
+      "id": "solution_face",
+      "label": "Face",
       "node_type": "solution",
       "description": "",
-      "frequency": 13,
+      "frequency": 9,
       "first_mentioned": "diary",
       "attributes": null
     },
@@ -374,7 +230,25 @@
       "label": "Act",
       "node_type": "solution",
       "description": "",
-      "frequency": 14,
+      "frequency": 3,
+      "first_mentioned": "diary",
+      "attributes": null
+    },
+    "solution_learn": {
+      "id": "solution_learn",
+      "label": "Learn",
+      "node_type": "solution",
+      "description": "",
+      "frequency": 3,
+      "first_mentioned": "diary",
+      "attributes": null
+    },
+    "solution_grow": {
+      "id": "solution_grow",
+      "label": "Grow",
+      "node_type": "solution",
+      "description": "",
+      "frequency": 3,
       "first_mentioned": "diary",
       "attributes": null
     },
@@ -383,7 +257,16 @@
       "label": "Start",
       "node_type": "solution",
       "description": "",
-      "frequency": 18,
+      "frequency": 6,
+      "first_mentioned": "diary",
+      "attributes": null
+    },
+    "solution_talk": {
+      "id": "solution_talk",
+      "label": "Talk",
+      "node_type": "solution",
+      "description": "",
+      "frequency": 1,
       "first_mentioned": "diary",
       "attributes": null
     },
@@ -396,66 +279,12 @@
       "first_mentioned": "diary",
       "attributes": null
     },
-    "solution_talk": {
-      "id": "solution_talk",
-      "label": "Talk",
-      "node_type": "solution",
-      "description": "",
-      "frequency": 59,
-      "first_mentioned": "diary",
-      "attributes": null
-    },
-    "solution_grow": {
-      "id": "solution_grow",
-      "label": "Grow",
-      "node_type": "solution",
-      "description": "",
-      "frequency": 9,
-      "first_mentioned": "diary",
-      "attributes": null
-    },
-    "solution_honest": {
-      "id": "solution_honest",
-      "label": "Honest",
-      "node_type": "solution",
-      "description": "",
-      "frequency": 1,
-      "first_mentioned": "diary",
-      "attributes": null
-    },
-    "solution_therapy": {
-      "id": "solution_therapy",
-      "label": "Therapy",
-      "node_type": "solution",
-      "description": "",
-      "frequency": 1,
-      "first_mentioned": "diary",
-      "attributes": null
-    },
     "emotion_happy": {
       "id": "emotion_happy",
       "label": "Happy",
       "node_type": "emotion",
       "description": "",
-      "frequency": 93,
-      "first_mentioned": "diary",
-      "attributes": null
-    },
-    "emotion_angry": {
-      "id": "emotion_angry",
-      "label": "Angry",
-      "node_type": "emotion",
-      "description": "",
-      "frequency": 7,
-      "first_mentioned": "diary",
-      "attributes": null
-    },
-    "emotion_sad": {
-      "id": "emotion_sad",
-      "label": "Sad",
-      "node_type": "emotion",
-      "description": "",
-      "frequency": 34,
+      "frequency": 14,
       "first_mentioned": "diary",
       "attributes": null
     },
@@ -464,13 +293,31 @@
       "label": "Excited",
       "node_type": "emotion",
       "description": "",
-      "frequency": 3,
+      "frequency": 1,
       "first_mentioned": "diary",
       "attributes": null
     },
     "emotion_grateful": {
       "id": "emotion_grateful",
       "label": "Grateful",
+      "node_type": "emotion",
+      "description": "",
+      "frequency": 2,
+      "first_mentioned": "diary",
+      "attributes": null
+    },
+    "emotion_angry": {
+      "id": "emotion_angry",
+      "label": "Angry",
+      "node_type": "emotion",
+      "description": "",
+      "frequency": 1,
+      "first_mentioned": "diary",
+      "attributes": null
+    },
+    "emotion_sad": {
+      "id": "emotion_sad",
+      "label": "Sad",
       "node_type": "emotion",
       "description": "",
       "frequency": 2,
@@ -485,322 +332,22 @@
       "frequency": 2,
       "first_mentioned": "diary",
       "attributes": null
-    },
-    "emotion_stressed": {
-      "id": "emotion_stressed",
-      "label": "Stressed",
-      "node_type": "emotion",
-      "description": "",
-      "frequency": 1,
-      "first_mentioned": "diary",
-      "attributes": null
-    },
-    "emotion_calm": {
-      "id": "emotion_calm",
-      "label": "Calm",
-      "node_type": "emotion",
-      "description": "",
-      "frequency": 1,
-      "first_mentioned": "diary",
-      "attributes": null
-    },
-    "emotion_confident": {
-      "id": "emotion_confident",
-      "label": "Confident",
-      "node_type": "emotion",
-      "description": "",
-      "frequency": 2,
-      "first_mentioned": "diary",
-      "attributes": null
     }
   },
   "edges": [
     {
       "source_id": "person_you",
-      "target_id": "place_there",
-      "relation_type": "conflicts",
-      "strength": 0.9999999999999999,
-      "evidence": "I remember the heavy warmth of being pressed against you in the dark, our skin blurring together unt"
-    },
-    {
-      "source_id": "person_you",
-      "target_id": "place_here",
-      "relation_type": "conflicts",
-      "strength": 0.9999999999999999,
-      "evidence": "I remember the heavy warmth of being pressed against you in the dark, our skin blurring together unt"
-    },
-    {
-      "source_id": "place_there",
-      "target_id": "place_here",
-      "relation_type": "conflicts",
-      "strength": 0.9999999999999999,
-      "evidence": "I remember the heavy warmth of being pressed against you in the dark, our skin blurring together unt"
-    },
-    {
-      "source_id": "person_you",
       "target_id": "solution_do",
       "relation_type": "causes",
       "strength": 0.8999999999999999,
-      "evidence": "But we are not made for each other because you don\u2019t exist"
+      "evidence": "But you will never know because you don\u2019t have it"
     },
     {
       "source_id": "person_you",
       "target_id": "solution_do",
       "relation_type": "caused_by",
       "strength": 0.8999999999999999,
-      "evidence": "But we are not made for each other because you don\u2019t exist"
-    },
-    {
-      "source_id": "solution_do",
-      "target_id": "solution_act",
-      "relation_type": "causes",
-      "strength": 0.9999999999999999,
-      "evidence": "Uromancy(reading of urine) was once a legitimate diagnostic practice, physicians bending over bowls "
-    },
-    {
-      "source_id": "solution_do",
-      "target_id": "solution_admit",
-      "relation_type": "causes",
-      "strength": 0.9999999999999999,
-      "evidence": "Uromancy(reading of urine) was once a legitimate diagnostic practice, physicians bending over bowls "
-    },
-    {
-      "source_id": "solution_act",
-      "target_id": "solution_admit",
-      "relation_type": "causes",
-      "strength": 0.9999999999999999,
-      "evidence": "Uromancy(reading of urine) was once a legitimate diagnostic practice, physicians bending over bowls "
-    },
-    {
-      "source_id": "solution_do",
-      "target_id": "solution_act",
-      "relation_type": "caused_by",
-      "strength": 0.9999999999999999,
-      "evidence": "Uromancy(reading of urine) was once a legitimate diagnostic practice, physicians bending over bowls "
-    },
-    {
-      "source_id": "solution_do",
-      "target_id": "solution_admit",
-      "relation_type": "caused_by",
-      "strength": 0.9999999999999999,
-      "evidence": "Uromancy(reading of urine) was once a legitimate diagnostic practice, physicians bending over bowls "
-    },
-    {
-      "source_id": "solution_act",
-      "target_id": "solution_admit",
-      "relation_type": "caused_by",
-      "strength": 0.9999999999999999,
-      "evidence": "Uromancy(reading of urine) was once a legitimate diagnostic practice, physicians bending over bowls "
-    },
-    {
-      "source_id": "person_you",
-      "target_id": "place_here",
-      "relation_type": "causes",
-      "strength": 0.8999999999999999,
-      "evidence": "Where the person you love might leave without cause"
-    },
-    {
-      "source_id": "person_people",
-      "target_id": "problem_scared",
-      "relation_type": "conflicts",
-      "strength": 0.9999999999999999,
-      "evidence": "Even Racism is a defense mechanism against people we don\u2019t understand, we are scared of the gods and"
-    },
-    {
-      "source_id": "person_people",
-      "target_id": "solution_do",
-      "relation_type": "conflicts",
-      "strength": 0.9999999999999999,
-      "evidence": "Even Racism is a defense mechanism against people we don\u2019t understand, we are scared of the gods and"
-    },
-    {
-      "source_id": "problem_scared",
-      "target_id": "solution_do",
-      "relation_type": "conflicts",
-      "strength": 0.9999999999999999,
-      "evidence": "Even Racism is a defense mechanism against people we don\u2019t understand, we are scared of the gods and"
-    },
-    {
-      "source_id": "person_people",
-      "target_id": "solution_do",
-      "relation_type": "causes",
-      "strength": 0.9999999999999999,
-      "evidence": "We look at the news and are astonished by the things people do cause it is outside the circle we dre"
-    },
-    {
-      "source_id": "person_you",
-      "target_id": "person_they",
-      "relation_type": "causes",
-      "strength": 0.8999999999999999,
-      "evidence": "The Villains are bad cause they behave in a way you don\u2019t expect a normal human being would"
-    },
-    {
-      "source_id": "person_they",
-      "target_id": "solution_do",
-      "relation_type": "causes",
-      "strength": 0.8999999999999999,
-      "evidence": "The Villains are bad cause they behave in a way you don\u2019t expect a normal human being would"
-    },
-    {
-      "source_id": "place_there",
-      "target_id": "place_here",
-      "relation_type": "causes",
-      "strength": 0.9999999999999999,
-      "evidence": "The anxiety was always there, underneath because the pattern was always a fiction, and some part of "
-    },
-    {
-      "source_id": "place_there",
-      "target_id": "place_here",
-      "relation_type": "caused_by",
-      "strength": 0.9999999999999999,
-      "evidence": "The anxiety was always there, underneath because the pattern was always a fiction, and some part of "
-    },
-    {
-      "source_id": "person_rushil",
-      "target_id": "person_you",
-      "relation_type": "relates_to",
-      "strength": 0.9999999999999999,
-      "evidence": "Thank you Algorithm\nRushil\nApr 01, 2026\n\n\nDid you ever wonder what it\u2019s like being the kid with the "
-    },
-    {
-      "source_id": "person_rushil",
-      "target_id": "solution_do",
-      "relation_type": "relates_to",
-      "strength": 0.9999999999999999,
-      "evidence": "Thank you Algorithm\nRushil\nApr 01, 2026\n\n\nDid you ever wonder what it\u2019s like being the kid with the "
-    },
-    {
-      "source_id": "person_you",
-      "target_id": "solution_do",
-      "relation_type": "relates_to",
-      "strength": 0.9999999999999999,
-      "evidence": "Thank you Algorithm\nRushil\nApr 01, 2026\n\n\nDid you ever wonder what it\u2019s like being the kid with the "
-    },
-    {
-      "source_id": "person_they",
-      "target_id": "emotion_happy",
-      "relation_type": "causes",
-      "strength": 0.8999999999999999,
-      "evidence": "Happy because they got to have more control"
-    },
-    {
-      "source_id": "person_they",
-      "target_id": "emotion_happy",
-      "relation_type": "caused_by",
-      "strength": 0.8999999999999999,
-      "evidence": "Happy because they got to have more control"
-    },
-    {
-      "source_id": "person_people",
-      "target_id": "solution_act",
-      "relation_type": "causes",
-      "strength": 0.9999999999999999,
-      "evidence": "I needed to see if he would scream, or jump, or get angry, because I wasn\u2019t able to find those raw r"
-    },
-    {
-      "source_id": "person_people",
-      "target_id": "emotion_angry",
-      "relation_type": "causes",
-      "strength": 0.9999999999999999,
-      "evidence": "I needed to see if he would scream, or jump, or get angry, because I wasn\u2019t able to find those raw r"
-    },
-    {
-      "source_id": "solution_act",
-      "target_id": "emotion_angry",
-      "relation_type": "causes",
-      "strength": 0.9999999999999999,
-      "evidence": "I needed to see if he would scream, or jump, or get angry, because I wasn\u2019t able to find those raw r"
-    },
-    {
-      "source_id": "person_people",
-      "target_id": "solution_act",
-      "relation_type": "caused_by",
-      "strength": 0.9999999999999999,
-      "evidence": "I needed to see if he would scream, or jump, or get angry, because I wasn\u2019t able to find those raw r"
-    },
-    {
-      "source_id": "person_people",
-      "target_id": "emotion_angry",
-      "relation_type": "caused_by",
-      "strength": 0.9999999999999999,
-      "evidence": "I needed to see if he would scream, or jump, or get angry, because I wasn\u2019t able to find those raw r"
-    },
-    {
-      "source_id": "solution_act",
-      "target_id": "emotion_angry",
-      "relation_type": "caused_by",
-      "strength": 0.9999999999999999,
-      "evidence": "I needed to see if he would scream, or jump, or get angry, because I wasn\u2019t able to find those raw r"
-    },
-    {
-      "source_id": "person_you",
-      "target_id": "problem_weak",
-      "relation_type": "conflicts",
-      "strength": 0.9999999999999999,
-      "evidence": "Every person is leaving a carbon footprint to be part of a system that is using your weakness agains"
-    },
-    {
-      "source_id": "problem_pain",
-      "target_id": "solution_do",
-      "relation_type": "causes",
-      "strength": 0.9999999999999999,
-      "evidence": "Or worse - we start to think our real pain ISN\u2019T valid because it doesn\u2019t look like the TikTok versi"
-    },
-    {
-      "source_id": "problem_pain",
-      "target_id": "solution_start",
-      "relation_type": "causes",
-      "strength": 0.9999999999999999,
-      "evidence": "Or worse - we start to think our real pain ISN\u2019T valid because it doesn\u2019t look like the TikTok versi"
-    },
-    {
-      "source_id": "solution_do",
-      "target_id": "solution_start",
-      "relation_type": "causes",
-      "strength": 0.9999999999999999,
-      "evidence": "Or worse - we start to think our real pain ISN\u2019T valid because it doesn\u2019t look like the TikTok versi"
-    },
-    {
-      "source_id": "problem_pain",
-      "target_id": "solution_do",
-      "relation_type": "caused_by",
-      "strength": 0.9999999999999999,
-      "evidence": "Or worse - we start to think our real pain ISN\u2019T valid because it doesn\u2019t look like the TikTok versi"
-    },
-    {
-      "source_id": "problem_pain",
-      "target_id": "solution_start",
-      "relation_type": "caused_by",
-      "strength": 0.9999999999999999,
-      "evidence": "Or worse - we start to think our real pain ISN\u2019T valid because it doesn\u2019t look like the TikTok versi"
-    },
-    {
-      "source_id": "solution_do",
-      "target_id": "solution_start",
-      "relation_type": "caused_by",
-      "strength": 0.9999999999999999,
-      "evidence": "Or worse - we start to think our real pain ISN\u2019T valid because it doesn\u2019t look like the TikTok versi"
-    },
-    {
-      "source_id": "problem_pain",
-      "target_id": "solution_do",
-      "relation_type": "relates_to",
-      "strength": 0.9999999999999999,
-      "evidence": "Or worse - we start to think our real pain ISN\u2019T valid because it doesn\u2019t look like the TikTok versi"
-    },
-    {
-      "source_id": "problem_pain",
-      "target_id": "solution_start",
-      "relation_type": "relates_to",
-      "strength": 0.9999999999999999,
-      "evidence": "Or worse - we start to think our real pain ISN\u2019T valid because it doesn\u2019t look like the TikTok versi"
-    },
-    {
-      "source_id": "solution_do",
-      "target_id": "solution_start",
-      "relation_type": "relates_to",
-      "strength": 0.9999999999999999,
-      "evidence": "Or worse - we start to think our real pain ISN\u2019T valid because it doesn\u2019t look like the TikTok versi"
+      "evidence": "But you will never know because you don\u2019t have it"
     },
     {
       "source_id": "solution_do",
@@ -810,11 +357,25 @@
       "evidence": "It only changes with time\n\n\nBro but like f the kingdom"
     },
     {
-      "source_id": "place_there",
-      "target_id": "place_here",
+      "source_id": "person_you",
+      "target_id": "solution_do",
+      "relation_type": "relates_to",
+      "strength": 0.8999999999999999,
+      "evidence": "Just do what you got to do and feel like"
+    },
+    {
+      "source_id": "place_here",
+      "target_id": "place_there",
       "relation_type": "relates_to",
       "strength": 0.8999999999999999,
       "evidence": "There is black and white like the god only says"
+    },
+    {
+      "source_id": "person_you",
+      "target_id": "place_here",
+      "relation_type": "causes",
+      "strength": 0.8999999999999999,
+      "evidence": "You read my notes where i think I'll get the best girl cause i didn't interact and stuff"
     },
     {
       "source_id": "person_you",
@@ -852,6 +413,13 @@
       "evidence": "Even your freedom is decided by your starting point\n\n\nSo according to me we only listen cause we can"
     },
     {
+      "source_id": "solution_do",
+      "target_id": "solution_start",
+      "relation_type": "causes",
+      "strength": 0.9999999999999999,
+      "evidence": "Even your freedom is decided by your starting point\n\n\nSo according to me we only listen cause we can"
+    },
+    {
       "source_id": "person_you",
       "target_id": "person_friend",
       "relation_type": "causes",
@@ -864,13 +432,6 @@
       "relation_type": "causes",
       "strength": 0.9999999999999999,
       "evidence": "So the women it friend you are with does not matter cause everyone in your life is glass you fill wi"
-    },
-    {
-      "source_id": "person_they",
-      "target_id": "solution_act",
-      "relation_type": "causes",
-      "strength": 0.8999999999999999,
-      "evidence": "Cause they are both feeling the exact same emotion"
     },
     {
       "source_id": "person_you",
@@ -880,102 +441,11 @@
       "evidence": "Even being grateful for this life is cause you still want something"
     },
     {
-      "source_id": "place_there",
+      "source_id": "person_they",
       "target_id": "solution_do",
       "relation_type": "causes",
       "strength": 0.8999999999999999,
-      "evidence": "There is freedom cause there is no bird"
-    },
-    {
-      "source_id": "place_here",
-      "target_id": "solution_do",
-      "relation_type": "causes",
-      "strength": 0.8999999999999999,
-      "evidence": "There is freedom cause there is no bird"
-    },
-    {
-      "source_id": "person_friend",
-      "target_id": "solution_start",
-      "relation_type": "relates_to",
-      "strength": 0.8999999999999999,
-      "evidence": "I am that person who gets way too attached and start behaving like his friend"
-    },
-    {
-      "source_id": "person_parents",
-      "target_id": "person_friend",
-      "relation_type": "relates_to",
-      "strength": 0.9999999999999999,
-      "evidence": "I don't want to be a one woman one life person\nI want my parents within reach\nI don't want to be a r"
-    },
-    {
-      "source_id": "person_parents",
-      "target_id": "solution_do",
-      "relation_type": "relates_to",
-      "strength": 0.9999999999999999,
-      "evidence": "I don't want to be a one woman one life person\nI want my parents within reach\nI don't want to be a r"
-    },
-    {
-      "source_id": "person_parents",
-      "target_id": "emotion_proud",
-      "relation_type": "relates_to",
-      "strength": 0.9999999999999999,
-      "evidence": "I don't want to be a one woman one life person\nI want my parents within reach\nI don't want to be a r"
-    },
-    {
-      "source_id": "person_friend",
-      "target_id": "solution_do",
-      "relation_type": "relates_to",
-      "strength": 0.9999999999999999,
-      "evidence": "I don't want to be a one woman one life person\nI want my parents within reach\nI don't want to be a r"
-    },
-    {
-      "source_id": "person_friend",
-      "target_id": "emotion_proud",
-      "relation_type": "relates_to",
-      "strength": 0.9999999999999999,
-      "evidence": "I don't want to be a one woman one life person\nI want my parents within reach\nI don't want to be a r"
-    },
-    {
-      "source_id": "solution_do",
-      "target_id": "emotion_proud",
-      "relation_type": "relates_to",
-      "strength": 0.9999999999999999,
-      "evidence": "I don't want to be a one woman one life person\nI want my parents within reach\nI don't want to be a r"
-    },
-    {
-      "source_id": "place_there",
-      "target_id": "solution_do",
-      "relation_type": "relates_to",
-      "strength": 0.9999999999999999,
-      "evidence": "I don't believe in hell and heaven\nI don't want to be NORMAL\nI don't want to be that guy stuck in a "
-    },
-    {
-      "source_id": "place_here",
-      "target_id": "solution_do",
-      "relation_type": "relates_to",
-      "strength": 0.9999999999999999,
-      "evidence": "I don't believe in hell and heaven\nI don't want to be NORMAL\nI don't want to be that guy stuck in a "
-    },
-    {
-      "source_id": "place_there",
-      "target_id": "place_here",
-      "relation_type": "supports",
-      "strength": 0.9999999999999999,
-      "evidence": "I don't believe in hell and heaven\nI don't want to be NORMAL\nI don't want to be that guy stuck in a "
-    },
-    {
-      "source_id": "place_there",
-      "target_id": "solution_do",
-      "relation_type": "supports",
-      "strength": 0.9999999999999999,
-      "evidence": "I don't believe in hell and heaven\nI don't want to be NORMAL\nI don't want to be that guy stuck in a "
-    },
-    {
-      "source_id": "place_here",
-      "target_id": "solution_do",
-      "relation_type": "supports",
-      "strength": 0.9999999999999999,
-      "evidence": "I don't believe in hell and heaven\nI don't want to be NORMAL\nI don't want to be that guy stuck in a "
+      "evidence": "These dogs they are kind to us cause it's in their genes"
     },
     {
       "source_id": "person_you",
@@ -1007,13 +477,20 @@
     },
     {
       "source_id": "person_you",
-      "target_id": "place_there",
+      "target_id": "place_here",
       "relation_type": "supports",
       "strength": 0.8999999999999999,
       "evidence": "There planets my friends, all helping me to rotate around you"
     },
     {
       "source_id": "person_you",
+      "target_id": "place_there",
+      "relation_type": "supports",
+      "strength": 0.8999999999999999,
+      "evidence": "There planets my friends, all helping me to rotate around you"
+    },
+    {
+      "source_id": "person_friend",
       "target_id": "place_here",
       "relation_type": "supports",
       "strength": 0.8999999999999999,
@@ -1027,8 +504,8 @@
       "evidence": "There planets my friends, all helping me to rotate around you"
     },
     {
-      "source_id": "person_friend",
-      "target_id": "place_here",
+      "source_id": "place_here",
+      "target_id": "place_there",
       "relation_type": "supports",
       "strength": 0.8999999999999999,
       "evidence": "There planets my friends, all helping me to rotate around you"
@@ -1036,6 +513,13 @@
     {
       "source_id": "solution_do",
       "target_id": "solution_face",
+      "relation_type": "causes",
+      "strength": 0.9999999999999999,
+      "evidence": "I started from her body went to the reaction of my body cause of her and compared her with ganga(as "
+    },
+    {
+      "source_id": "solution_do",
+      "target_id": "solution_act",
       "relation_type": "causes",
       "strength": 0.9999999999999999,
       "evidence": "I started from her body went to the reaction of my body cause of her and compared her with ganga(as "
@@ -1070,6 +554,13 @@
     },
     {
       "source_id": "person_they",
+      "target_id": "solution_do",
+      "relation_type": "relates_to",
+      "strength": 0.8999999999999999,
+      "evidence": "Then i say they are friends , like friends do they help me rotate around her(moon);"
+    },
+    {
+      "source_id": "person_friend",
       "target_id": "solution_do",
       "relation_type": "relates_to",
       "strength": 0.8999999999999999,
@@ -1132,6 +623,69 @@
       "evidence": "I\u2019ve done my sadhana \u2014\nnever touched another hand,\nnever felt another pulse,\nbecause I was always re"
     },
     {
+      "source_id": "person_friend",
+      "target_id": "solution_start",
+      "relation_type": "relates_to",
+      "strength": 0.8999999999999999,
+      "evidence": "I am that person who gets way too attached and start behaving like his friend"
+    },
+    {
+      "source_id": "person_people",
+      "target_id": "solution_do",
+      "relation_type": "causes",
+      "strength": 0.8999999999999999,
+      "evidence": "Once i was molested by a random person in a bus but people laughed it off cause i am a guy"
+    },
+    {
+      "source_id": "place_here",
+      "target_id": "place_there",
+      "relation_type": "causes",
+      "strength": 0.8999999999999999,
+      "evidence": "There is freedom cause there is no bird"
+    },
+    {
+      "source_id": "place_here",
+      "target_id": "solution_do",
+      "relation_type": "causes",
+      "strength": 0.8999999999999999,
+      "evidence": "There is freedom cause there is no bird"
+    },
+    {
+      "source_id": "place_there",
+      "target_id": "solution_do",
+      "relation_type": "causes",
+      "strength": 0.8999999999999999,
+      "evidence": "There is freedom cause there is no bird"
+    },
+    {
+      "source_id": "person_they",
+      "target_id": "solution_act",
+      "relation_type": "causes",
+      "strength": 0.8999999999999999,
+      "evidence": "Cause they are both feeling the exact same emotion"
+    },
+    {
+      "source_id": "person_you",
+      "target_id": "place_here",
+      "relation_type": "conflicts",
+      "strength": 0.9999999999999999,
+      "evidence": "I remember the heavy warmth of being pressed against you in the dark, our skin blurring together unt"
+    },
+    {
+      "source_id": "person_you",
+      "target_id": "place_there",
+      "relation_type": "conflicts",
+      "strength": 0.9999999999999999,
+      "evidence": "I remember the heavy warmth of being pressed against you in the dark, our skin blurring together unt"
+    },
+    {
+      "source_id": "place_here",
+      "target_id": "place_there",
+      "relation_type": "conflicts",
+      "strength": 0.9999999999999999,
+      "evidence": "I remember the heavy warmth of being pressed against you in the dark, our skin blurring together unt"
+    },
+    {
       "source_id": "place_room",
       "target_id": "solution_start",
       "relation_type": "relates_to",
@@ -1139,760 +693,193 @@
       "evidence": "But now I am free, this is my story\"\nSo it goes like sound starts the guy walks to the mirror as he "
     },
     {
-      "source_id": "person_they",
-      "target_id": "solution_talk",
-      "relation_type": "relates_to",
-      "strength": 0.8999999999999999,
-      "evidence": "Not talking to girls might seem like virgin and shit but in my head they are slowly becoming aliens"
-    },
-    {
-      "source_id": "person_you",
-      "target_id": "problem_pain",
-      "relation_type": "relates_to",
-      "strength": 0.8999999999999999,
-      "evidence": "Bruh like i said your pain disappears"
-    },
-    {
-      "source_id": "problem_scared",
-      "target_id": "solution_act",
-      "relation_type": "causes",
-      "strength": 0.8999999999999999,
-      "evidence": "I am scared of them cause i can exactly estimat the image of me in their head"
-    },
-    {
-      "source_id": "person_people",
-      "target_id": "problem_scared",
-      "relation_type": "causes",
-      "strength": 0.9999999999999999,
-      "evidence": "I tried and forced myself not to puke cause i Would lose my aura points and was scared people will j"
-    },
-    {
-      "source_id": "place_beach",
-      "target_id": "solution_do",
-      "relation_type": "relates_to",
-      "strength": 0.8999999999999999,
-      "evidence": "Like i came to beach and then i don't know what to do"
-    },
-    {
-      "source_id": "person_you",
-      "target_id": "solution_learn",
-      "relation_type": "causes",
-      "strength": 0.9999999999999999,
-      "evidence": "You know tamasha is my fav film and learnt the dialogues cause i thought maybe it might happen to me"
-    },
-    {
-      "source_id": "person_you",
-      "target_id": "solution_do",
-      "relation_type": "supports",
-      "strength": 0.9999999999999999,
-      "evidence": "She told me how she was in havelock and some random auto guy took her number saying I'll help in you"
-    },
-    {
-      "source_id": "person_you",
-      "target_id": "solution_start",
-      "relation_type": "relates_to",
-      "strength": 0.8999999999999999,
-      "evidence": "Then he started texting stuff like baby i miss you and shit"
-    },
-    {
-      "source_id": "person_you",
-      "target_id": "place_here",
-      "relation_type": "relates_to",
-      "strength": 0.8999999999999999,
-      "evidence": "True love is something where you only reflect but ask nothing in return, like nature"
-    },
-    {
-      "source_id": "person_they",
-      "target_id": "person_mother",
-      "relation_type": "supports",
-      "strength": 0.9999999999999999,
-      "evidence": "Normal human beings, however, even when they are helping their kids grow up, to a very small extent,"
-    },
-    {
-      "source_id": "person_they",
-      "target_id": "place_here",
-      "relation_type": "supports",
-      "strength": 0.9999999999999999,
-      "evidence": "Normal human beings, however, even when they are helping their kids grow up, to a very small extent,"
-    },
-    {
-      "source_id": "person_they",
-      "target_id": "solution_grow",
-      "relation_type": "supports",
-      "strength": 0.9999999999999999,
-      "evidence": "Normal human beings, however, even when they are helping their kids grow up, to a very small extent,"
-    },
-    {
-      "source_id": "person_mother",
-      "target_id": "place_here",
-      "relation_type": "supports",
-      "strength": 0.9999999999999999,
-      "evidence": "Normal human beings, however, even when they are helping their kids grow up, to a very small extent,"
-    },
-    {
-      "source_id": "person_mother",
-      "target_id": "solution_grow",
-      "relation_type": "supports",
-      "strength": 0.9999999999999999,
-      "evidence": "Normal human beings, however, even when they are helping their kids grow up, to a very small extent,"
-    },
-    {
-      "source_id": "place_here",
-      "target_id": "solution_grow",
-      "relation_type": "supports",
-      "strength": 0.9999999999999999,
-      "evidence": "Normal human beings, however, even when they are helping their kids grow up, to a very small extent,"
-    },
-    {
-      "source_id": "person_you",
-      "target_id": "solution_act",
+      "source_id": "person_rushil",
+      "target_id": "person_you",
       "relation_type": "relates_to",
       "strength": 0.9999999999999999,
-      "evidence": "\u201d Even as a reward for life\u2014which is the best reward you could actually get\u2014you expect another rewar"
-    },
-    {
-      "source_id": "solution_change",
-      "target_id": "solution_act",
-      "relation_type": "relates_to",
-      "strength": 0.8999999999999999,
-      "evidence": "\u201d This quote changed my life and my perception of things, like what is good and bad, actually"
-    },
-    {
-      "source_id": "place_place",
-      "target_id": "solution_start",
-      "relation_type": "relates_to",
-      "strength": 0.8999999999999999,
-      "evidence": "This anxiety problem started whenever i go to places it's like someone is talking about me"
-    },
-    {
-      "source_id": "place_place",
-      "target_id": "solution_talk",
-      "relation_type": "relates_to",
-      "strength": 0.8999999999999999,
-      "evidence": "This anxiety problem started whenever i go to places it's like someone is talking about me"
-    },
-    {
-      "source_id": "solution_start",
-      "target_id": "solution_talk",
-      "relation_type": "relates_to",
-      "strength": 0.8999999999999999,
-      "evidence": "This anxiety problem started whenever i go to places it's like someone is talking about me"
-    },
-    {
-      "source_id": "person_friend",
-      "target_id": "place_room",
-      "relation_type": "supports",
-      "strength": 0.8999999999999999,
-      "evidence": "My friends took me to the bathroom to help me"
-    },
-    {
-      "source_id": "person_people",
-      "target_id": "problem_pain",
-      "relation_type": "causes",
-      "strength": 0.8999999999999999,
-      "evidence": "I can't be like those people who cause pain and suffering but live anyways"
-    },
-    {
-      "source_id": "person_people",
-      "target_id": "problem_pain",
-      "relation_type": "relates_to",
-      "strength": 0.8999999999999999,
-      "evidence": "I can't be like those people who cause pain and suffering but live anyways"
-    },
-    {
-      "source_id": "problem_scared",
-      "target_id": "problem_pain",
-      "relation_type": "supports",
-      "strength": 0.8999999999999999,
-      "evidence": "We are all scared of pain and want, but fear helps us survive"
-    },
-    {
-      "source_id": "problem_scared",
-      "target_id": "problem_fear",
-      "relation_type": "supports",
-      "strength": 0.8999999999999999,
-      "evidence": "We are all scared of pain and want, but fear helps us survive"
-    },
-    {
-      "source_id": "problem_pain",
-      "target_id": "problem_fear",
-      "relation_type": "supports",
-      "strength": 0.8999999999999999,
-      "evidence": "We are all scared of pain and want, but fear helps us survive"
-    },
-    {
-      "source_id": "place_house",
-      "target_id": "emotion_sad",
-      "relation_type": "relates_to",
-      "strength": 0.8999999999999999,
-      "evidence": "Even the house is so broken and sad like the job"
-    },
-    {
-      "source_id": "person_friend",
-      "target_id": "person_girlfriend",
-      "relation_type": "relates_to",
-      "strength": 0.8999999999999999,
-      "evidence": "Like having a college girlfriend, jumping boys hostel to meet her"
-    },
-    {
-      "source_id": "person_you",
-      "target_id": "place_office",
-      "relation_type": "relates_to",
-      "strength": 0.8999999999999999,
-      "evidence": "You see like in my lunch table at office"
-    },
-    {
-      "source_id": "place_home",
-      "target_id": "solution_do",
-      "relation_type": "relates_to",
-      "strength": 0.8999999999999999,
-      "evidence": "i don't know why but I just feel like leaving everything and running home"
-    },
-    {
-      "source_id": "person_they",
-      "target_id": "person_people",
-      "relation_type": "learned_from",
-      "strength": 0.9999999999999999,
-      "evidence": "They are good people and all but by now even I realized that having someone close to us from our Nat"
-    },
-    {
-      "source_id": "person_they",
-      "target_id": "person_people",
-      "relation_type": "supports",
-      "strength": 0.9999999999999999,
-      "evidence": "They are good people and all but by now even I realized that having someone close to us from our Nat"
-    },
-    {
-      "source_id": "person_dad",
-      "target_id": "person_friend",
-      "relation_type": "relates_to",
-      "strength": 0.8999999999999999,
-      "evidence": "i will become an avg like my dad or a regular guy like the oldie friends i have"
-    },
-    {
-      "source_id": "person_you",
-      "target_id": "person_friend",
-      "relation_type": "relates_to",
-      "strength": 0.8999999999999999,
-      "evidence": "now your friends might taunt you and make feel like shit"
-    },
-    {
-      "source_id": "person_you",
-      "target_id": "person_brother",
-      "relation_type": "causes",
-      "strength": 0.8999999999999999,
-      "evidence": "brother you are asking this question nowcause your mind is still in tamas"
-    },
-    {
-      "source_id": "problem_scared",
-      "target_id": "solution_do",
-      "relation_type": "relates_to",
-      "strength": 0.9999999999999999,
-      "evidence": "Maybe I even like being lonely, deep down, but I'm also scared I'm missing out \u2013 FOMO is definitely "
-    },
-    {
-      "source_id": "problem_fail",
-      "target_id": "solution_act",
-      "relation_type": "relates_to",
-      "strength": 0.9999999999999999,
-      "evidence": "I remember things vividly, even crying and laughing seconds apart after failing in 12th \u2013 it felt li"
-    },
-    {
-      "source_id": "person_parents",
-      "target_id": "problem_pain",
-      "relation_type": "causes",
-      "strength": 0.8999999999999999,
-      "evidence": "I feel all this pain is cause of my parents and i can't talk to them as well"
-    },
-    {
-      "source_id": "person_parents",
-      "target_id": "solution_talk",
-      "relation_type": "causes",
-      "strength": 0.8999999999999999,
-      "evidence": "I feel all this pain is cause of my parents and i can't talk to them as well"
-    },
-    {
-      "source_id": "problem_pain",
-      "target_id": "solution_talk",
-      "relation_type": "causes",
-      "strength": 0.8999999999999999,
-      "evidence": "I feel all this pain is cause of my parents and i can't talk to them as well"
-    },
-    {
-      "source_id": "person_they",
-      "target_id": "person_people",
-      "relation_type": "relates_to",
-      "strength": 0.8999999999999999,
-      "evidence": "some people are lucky they are handed their goals and they actually like it"
-    },
-    {
-      "source_id": "person_they",
-      "target_id": "solution_act",
-      "relation_type": "relates_to",
-      "strength": 0.8999999999999999,
-      "evidence": "some people are lucky they are handed their goals and they actually like it"
-    },
-    {
-      "source_id": "person_people",
-      "target_id": "solution_act",
-      "relation_type": "relates_to",
-      "strength": 0.8999999999999999,
-      "evidence": "some people are lucky they are handed their goals and they actually like it"
-    },
-    {
-      "source_id": "person_you",
-      "target_id": "person_they",
-      "relation_type": "relates_to",
-      "strength": 0.9999999999999999,
-      "evidence": "some people are pressurized by parents like you and they actually like where their parents are pushi"
-    },
-    {
-      "source_id": "person_you",
-      "target_id": "person_parents",
-      "relation_type": "relates_to",
-      "strength": 0.9999999999999999,
-      "evidence": "some people are pressurized by parents like you and they actually like where their parents are pushi"
-    },
-    {
-      "source_id": "person_they",
-      "target_id": "person_parents",
-      "relation_type": "relates_to",
-      "strength": 0.9999999999999999,
-      "evidence": "some people are pressurized by parents like you and they actually like where their parents are pushi"
-    },
-    {
-      "source_id": "person_they",
-      "target_id": "place_here",
-      "relation_type": "relates_to",
-      "strength": 0.9999999999999999,
-      "evidence": "some people are pressurized by parents like you and they actually like where their parents are pushi"
-    },
-    {
-      "source_id": "person_people",
-      "target_id": "person_parents",
-      "relation_type": "relates_to",
-      "strength": 0.9999999999999999,
-      "evidence": "some people are pressurized by parents like you and they actually like where their parents are pushi"
-    },
-    {
-      "source_id": "person_people",
-      "target_id": "place_here",
-      "relation_type": "relates_to",
-      "strength": 0.9999999999999999,
-      "evidence": "some people are pressurized by parents like you and they actually like where their parents are pushi"
-    },
-    {
-      "source_id": "person_parents",
-      "target_id": "place_here",
-      "relation_type": "relates_to",
-      "strength": 0.9999999999999999,
-      "evidence": "some people are pressurized by parents like you and they actually like where their parents are pushi"
-    },
-    {
-      "source_id": "person_parents",
-      "target_id": "solution_act",
-      "relation_type": "relates_to",
-      "strength": 0.9999999999999999,
-      "evidence": "some people are pressurized by parents like you and they actually like where their parents are pushi"
-    },
-    {
-      "source_id": "place_here",
-      "target_id": "solution_act",
-      "relation_type": "relates_to",
-      "strength": 0.9999999999999999,
-      "evidence": "some people are pressurized by parents like you and they actually like where their parents are pushi"
-    },
-    {
-      "source_id": "person_you",
-      "target_id": "person_people",
-      "relation_type": "causes",
-      "strength": 0.9999999999999999,
-      "evidence": "throughout you life you put on masks cause you were too scared people will leave or you'll end up as"
-    },
-    {
-      "source_id": "person_you",
-      "target_id": "problem_scared",
-      "relation_type": "causes",
-      "strength": 0.9999999999999999,
-      "evidence": "throughout you life you put on masks cause you were too scared people will leave or you'll end up as"
-    },
-    {
-      "source_id": "person_friend",
-      "target_id": "person_mom",
-      "relation_type": "causes",
-      "strength": 0.9999999999999999,
-      "evidence": "I remeber as a kid i went home crying and held my mom cause my bus route changed and my friend went "
-    },
-    {
-      "source_id": "person_friend",
-      "target_id": "place_home",
-      "relation_type": "causes",
-      "strength": 0.9999999999999999,
-      "evidence": "I remeber as a kid i went home crying and held my mom cause my bus route changed and my friend went "
-    },
-    {
-      "source_id": "person_friend",
-      "target_id": "solution_change",
-      "relation_type": "causes",
-      "strength": 0.9999999999999999,
-      "evidence": "I remeber as a kid i went home crying and held my mom cause my bus route changed and my friend went "
-    },
-    {
-      "source_id": "person_mom",
-      "target_id": "place_home",
-      "relation_type": "causes",
-      "strength": 0.9999999999999999,
-      "evidence": "I remeber as a kid i went home crying and held my mom cause my bus route changed and my friend went "
-    },
-    {
-      "source_id": "person_mom",
-      "target_id": "solution_change",
-      "relation_type": "causes",
-      "strength": 0.9999999999999999,
-      "evidence": "I remeber as a kid i went home crying and held my mom cause my bus route changed and my friend went "
-    },
-    {
-      "source_id": "place_home",
-      "target_id": "solution_change",
-      "relation_type": "causes",
-      "strength": 0.9999999999999999,
-      "evidence": "I remeber as a kid i went home crying and held my mom cause my bus route changed and my friend went "
+      "evidence": "Rushil\nApr 01, 2026\n\nDid you ever wonder what it's like being the kid with the key to the door of en"
     },
     {
       "source_id": "person_rushil",
-      "target_id": "place_place",
-      "relation_type": "causes",
-      "strength": 0.9999999999999999,
-      "evidence": "Sorry future Rushil, just know you don't have to think of coming back to the past cause you lived it"
-    },
-    {
-      "source_id": "person_you",
-      "target_id": "place_place",
-      "relation_type": "causes",
-      "strength": 0.9999999999999999,
-      "evidence": "Sorry future Rushil, just know you don't have to think of coming back to the past cause you lived it"
-    },
-    {
-      "source_id": "place_place",
       "target_id": "solution_do",
-      "relation_type": "causes",
-      "strength": 0.9999999999999999,
-      "evidence": "Sorry future Rushil, just know you don't have to think of coming back to the past cause you lived it"
-    },
-    {
-      "source_id": "person_you",
-      "target_id": "person_girlfriend",
       "relation_type": "relates_to",
       "strength": 0.9999999999999999,
-      "evidence": "You might have complaints like \"maintain your health\" \"go to MS \" \"get a girlfriend pls\" \"enjoy life"
-    },
-    {
-      "source_id": "problem_scared",
-      "target_id": "solution_do",
-      "relation_type": "causes",
-      "strength": 0.8999999999999999,
-      "evidence": "You don't want to play any game cause you are scared of losing"
-    },
-    {
-      "source_id": "person_father",
-      "target_id": "person_friend",
-      "relation_type": "causes",
-      "strength": 0.8999999999999999,
-      "evidence": "dreams seem to stand father now, friends too, just cause of these lies"
-    },
-    {
-      "source_id": "person_you",
-      "target_id": "place_there",
-      "relation_type": "relates_to",
-      "strength": 0.9999999999999999,
-      "evidence": "there now you are cool\n\n\nMy life-49\nThe regularness of life and the fact that it will always be like"
-    },
-    {
-      "source_id": "place_there",
-      "target_id": "solution_act",
-      "relation_type": "relates_to",
-      "strength": 0.9999999999999999,
-      "evidence": "there now you are cool\n\n\nMy life-49\nThe regularness of life and the fact that it will always be like"
-    },
-    {
-      "source_id": "person_people",
-      "target_id": "place_there",
-      "relation_type": "relates_to",
-      "strength": 0.9999999999999999,
-      "evidence": "The world just does something so violent and the people just FORGET and move on like nothing has eve"
-    },
-    {
-      "source_id": "person_you",
-      "target_id": "person_mom",
-      "relation_type": "relates_to",
-      "strength": 0.8999999999999999,
-      "evidence": "Those moments would feel like your whole life was meant for it"
-    },
-    {
-      "source_id": "solution_talk",
-      "target_id": "emotion_happy",
-      "relation_type": "relates_to",
-      "strength": 0.9999999999999999,
-      "evidence": "Yes i should chase fucking a lover, marriage and a happy family like the others but i am talking abo"
-    },
-    {
-      "source_id": "person_father",
-      "target_id": "place_here",
-      "relation_type": "relates_to",
-      "strength": 0.8999999999999999,
-      "evidence": "But my grandfather ain't happy too, he is almost like 80 but he didn't end up where he wanted to"
-    },
-    {
-      "source_id": "person_father",
-      "target_id": "emotion_happy",
-      "relation_type": "relates_to",
-      "strength": 0.8999999999999999,
-      "evidence": "But my grandfather ain't happy too, he is almost like 80 but he didn't end up where he wanted to"
-    },
-    {
-      "source_id": "place_here",
-      "target_id": "emotion_happy",
-      "relation_type": "relates_to",
-      "strength": 0.8999999999999999,
-      "evidence": "But my grandfather ain't happy too, he is almost like 80 but he didn't end up where he wanted to"
-    },
-    {
-      "source_id": "person_father",
-      "target_id": "place_house",
-      "relation_type": "relates_to",
-      "strength": 0.9999999999999999,
-      "evidence": "I will forget all this bullshit thoughts, just focus on my job, get six pack, get big house, happy f"
-    },
-    {
-      "source_id": "place_house",
-      "target_id": "emotion_happy",
-      "relation_type": "relates_to",
-      "strength": 0.9999999999999999,
-      "evidence": "I will forget all this bullshit thoughts, just focus on my job, get six pack, get big house, happy f"
-    },
-    {
-      "source_id": "person_you",
-      "target_id": "solution_talk",
-      "relation_type": "relates_to",
-      "strength": 0.9999999999999999,
-      "evidence": "Also in the end just a fun answer- do you think my intelligence or awareness or way of talking is fa"
-    },
-    {
-      "source_id": "person_people",
-      "target_id": "solution_talk",
-      "relation_type": "relates_to",
-      "strength": 0.9999999999999999,
-      "evidence": "Also in the end just a fun answer- do you think my intelligence or awareness or way of talking is fa"
-    },
-    {
-      "source_id": "solution_do",
-      "target_id": "solution_talk",
-      "relation_type": "relates_to",
-      "strength": 0.9999999999999999,
-      "evidence": "Also in the end just a fun answer- do you think my intelligence or awareness or way of talking is fa"
-    },
-    {
-      "source_id": "solution_do",
-      "target_id": "solution_change",
-      "relation_type": "supports",
-      "strength": 0.8999999999999999,
-      "evidence": "I am not doing anything to change it nor the world is helping me towards it"
+      "evidence": "Rushil\nApr 01, 2026\n\nDid you ever wonder what it's like being the kid with the key to the door of en"
     },
     {
       "source_id": "person_they",
-      "target_id": "place_room",
+      "target_id": "emotion_happy",
       "relation_type": "causes",
       "strength": 0.8999999999999999,
-      "evidence": "First, they removed me from the hostel because I was caught with something in the room"
+      "evidence": "Happy because they got to have more control"
     },
     {
       "source_id": "person_they",
-      "target_id": "place_room",
+      "target_id": "emotion_happy",
       "relation_type": "caused_by",
       "strength": 0.8999999999999999,
-      "evidence": "First, they removed me from the hostel because I was caught with something in the room"
-    },
-    {
-      "source_id": "emotion_happy",
-      "target_id": "emotion_sad",
-      "relation_type": "causes",
-      "strength": 0.9999999999999999,
-      "evidence": "Life's happy man, this is probably the only happy note in this my life series cause i feel like writ"
-    },
-    {
-      "source_id": "emotion_happy",
-      "target_id": "emotion_sad",
-      "relation_type": "relates_to",
-      "strength": 0.9999999999999999,
-      "evidence": "Life's happy man, this is probably the only happy note in this my life series cause i feel like writ"
+      "evidence": "Happy because they got to have more control"
     },
     {
       "source_id": "person_people",
+      "target_id": "solution_act",
+      "relation_type": "causes",
+      "strength": 0.9999999999999999,
+      "evidence": "I needed to see if he would scream, or jump, or get angry, because I wasn't able to find those raw r"
+    },
+    {
+      "source_id": "person_people",
+      "target_id": "emotion_angry",
+      "relation_type": "causes",
+      "strength": 0.9999999999999999,
+      "evidence": "I needed to see if he would scream, or jump, or get angry, because I wasn't able to find those raw r"
+    },
+    {
+      "source_id": "solution_act",
+      "target_id": "emotion_angry",
+      "relation_type": "causes",
+      "strength": 0.9999999999999999,
+      "evidence": "I needed to see if he would scream, or jump, or get angry, because I wasn't able to find those raw r"
+    },
+    {
+      "source_id": "person_people",
+      "target_id": "solution_act",
+      "relation_type": "caused_by",
+      "strength": 0.9999999999999999,
+      "evidence": "I needed to see if he would scream, or jump, or get angry, because I wasn't able to find those raw r"
+    },
+    {
+      "source_id": "person_people",
+      "target_id": "emotion_angry",
+      "relation_type": "caused_by",
+      "strength": 0.9999999999999999,
+      "evidence": "I needed to see if he would scream, or jump, or get angry, because I wasn't able to find those raw r"
+    },
+    {
+      "source_id": "solution_act",
+      "target_id": "emotion_angry",
+      "relation_type": "caused_by",
+      "strength": 0.9999999999999999,
+      "evidence": "I needed to see if he would scream, or jump, or get angry, because I wasn't able to find those raw r"
+    },
+    {
+      "source_id": "problem_pain",
+      "target_id": "solution_do",
+      "relation_type": "causes",
+      "strength": 0.9999999999999999,
+      "evidence": "Or worse - we start to think our real pain ISN'T valid because it doesn't look like the TikTok versi"
+    },
+    {
+      "source_id": "problem_pain",
       "target_id": "solution_start",
       "relation_type": "causes",
       "strength": 0.9999999999999999,
-      "evidence": "Anyways crazy how i started the year depressed after going to a trip with basically unknown people, "
+      "evidence": "Or worse - we start to think our real pain ISN'T valid because it doesn't look like the TikTok versi"
     },
     {
-      "source_id": "place_home",
-      "target_id": "emotion_sad",
-      "relation_type": "causes",
-      "strength": 0.8999999999999999,
-      "evidence": "This birthday too sadly i have to stay home due to corona 2"
-    },
-    {
-      "source_id": "person_people",
+      "source_id": "problem_pain",
       "target_id": "solution_do",
-      "relation_type": "supports",
-      "strength": 0.8999999999999999,
-      "evidence": "Religion has come into picture cause people don't believe in the same God"
-    },
-    {
-      "source_id": "person_people",
-      "target_id": "person_friend",
-      "relation_type": "causes",
+      "relation_type": "caused_by",
       "strength": 0.9999999999999999,
-      "evidence": "But what if u are alone far away from family living among people u don't know and became friends onl"
+      "evidence": "Or worse - we start to think our real pain ISN'T valid because it doesn't look like the TikTok versi"
     },
     {
-      "source_id": "person_people",
-      "target_id": "solution_learn",
-      "relation_type": "relates_to",
+      "source_id": "problem_pain",
+      "target_id": "solution_start",
+      "relation_type": "caused_by",
       "strength": 0.9999999999999999,
-      "evidence": "But it's not like I hate these people, I still like them,I am adjusting, I am learning Hindi, I am m"
-    },
-    {
-      "source_id": "person_rushil",
-      "target_id": "person_parents",
-      "relation_type": "relates_to",
-      "strength": 0.8999999999999999,
-      "evidence": "I am happy that i spoke well with yashvardhan's parents unlike the normal Rushil would"
-    },
-    {
-      "source_id": "person_rushil",
-      "target_id": "emotion_happy",
-      "relation_type": "relates_to",
-      "strength": 0.8999999999999999,
-      "evidence": "I am happy that i spoke well with yashvardhan's parents unlike the normal Rushil would"
-    },
-    {
-      "source_id": "person_parents",
-      "target_id": "emotion_happy",
-      "relation_type": "relates_to",
-      "strength": 0.8999999999999999,
-      "evidence": "I am happy that i spoke well with yashvardhan's parents unlike the normal Rushil would"
-    },
-    {
-      "source_id": "person_they",
-      "target_id": "person_friend",
-      "relation_type": "causes",
-      "strength": 0.9999999999999999,
-      "evidence": "I can see many girls looking at me but i can't do anything cause they are mostly with their boyfrien"
-    },
-    {
-      "source_id": "person_dad",
-      "target_id": "emotion_happy",
-      "relation_type": "relates_to",
-      "strength": 0.8999999999999999,
-      "evidence": "A bankrupt life in the name of ART or a sad life with plenty money , a happy family like my Dad"
-    },
-    {
-      "source_id": "person_dad",
-      "target_id": "emotion_sad",
-      "relation_type": "relates_to",
-      "strength": 0.8999999999999999,
-      "evidence": "A bankrupt life in the name of ART or a sad life with plenty money , a happy family like my Dad"
-    },
-    {
-      "source_id": "person_rushil",
-      "target_id": "person_parents",
-      "relation_type": "causes",
-      "strength": 0.9999999999999999,
-      "evidence": "My first ever name was also ramakrishna then it got changed to Rushil cause of the fiasco my grandmo"
-    },
-    {
-      "source_id": "person_rushil",
-      "target_id": "person_mom",
-      "relation_type": "causes",
-      "strength": 0.9999999999999999,
-      "evidence": "My first ever name was also ramakrishna then it got changed to Rushil cause of the fiasco my grandmo"
-    },
-    {
-      "source_id": "person_rushil",
-      "target_id": "solution_change",
-      "relation_type": "causes",
-      "strength": 0.9999999999999999,
-      "evidence": "My first ever name was also ramakrishna then it got changed to Rushil cause of the fiasco my grandmo"
-    },
-    {
-      "source_id": "person_parents",
-      "target_id": "person_mom",
-      "relation_type": "causes",
-      "strength": 0.9999999999999999,
-      "evidence": "My first ever name was also ramakrishna then it got changed to Rushil cause of the fiasco my grandmo"
-    },
-    {
-      "source_id": "person_parents",
-      "target_id": "solution_change",
-      "relation_type": "causes",
-      "strength": 0.9999999999999999,
-      "evidence": "My first ever name was also ramakrishna then it got changed to Rushil cause of the fiasco my grandmo"
-    },
-    {
-      "source_id": "person_people",
-      "target_id": "place_here",
-      "relation_type": "causes",
-      "strength": 0.9999999999999999,
-      "evidence": "I have associated myself with jobless people and can't go anywhere cause of this, i have a job and s"
-    },
-    {
-      "source_id": "person_you",
-      "target_id": "person_wife",
-      "relation_type": "relates_to",
-      "strength": 0.9999999999999999,
-      "evidence": "You may be like bro you'll get a wife, sex and everything but that thought is killing me inside out"
-    },
-    {
-      "source_id": "person_they",
-      "target_id": "place_place",
-      "relation_type": "supports",
-      "strength": 0.8999999999999999,
-      "evidence": "They have given me a place to stay and helped me"
+      "evidence": "Or worse - we start to think our real pain ISN'T valid because it doesn't look like the TikTok versi"
     },
     {
       "source_id": "solution_do",
-      "target_id": "solution_act",
+      "target_id": "solution_start",
+      "relation_type": "caused_by",
+      "strength": 0.9999999999999999,
+      "evidence": "Or worse - we start to think our real pain ISN'T valid because it doesn't look like the TikTok versi"
+    },
+    {
+      "source_id": "problem_pain",
+      "target_id": "solution_do",
       "relation_type": "relates_to",
       "strength": 0.9999999999999999,
-      "evidence": "Most of the people in software don't know many stuff but they act like they do until they actually d"
+      "evidence": "Or worse - we start to think our real pain ISN'T valid because it doesn't look like the TikTok versi"
+    },
+    {
+      "source_id": "problem_pain",
+      "target_id": "solution_start",
+      "relation_type": "relates_to",
+      "strength": 0.9999999999999999,
+      "evidence": "Or worse - we start to think our real pain ISN'T valid because it doesn't look like the TikTok versi"
+    },
+    {
+      "source_id": "solution_do",
+      "target_id": "solution_start",
+      "relation_type": "relates_to",
+      "strength": 0.9999999999999999,
+      "evidence": "Or worse - we start to think our real pain ISN'T valid because it doesn't look like the TikTok versi"
+    },
+    {
+      "source_id": "person_friend",
+      "target_id": "person_parents",
+      "relation_type": "relates_to",
+      "strength": 0.9999999999999999,
+      "evidence": "I don't want to be a one woman one life person\nI want my parents within reach\nI don't want to be a r"
+    },
+    {
+      "source_id": "person_friend",
+      "target_id": "emotion_proud",
+      "relation_type": "relates_to",
+      "strength": 0.9999999999999999,
+      "evidence": "I don't want to be a one woman one life person\nI want my parents within reach\nI don't want to be a r"
+    },
+    {
+      "source_id": "person_parents",
+      "target_id": "solution_do",
+      "relation_type": "relates_to",
+      "strength": 0.9999999999999999,
+      "evidence": "I don't want to be a one woman one life person\nI want my parents within reach\nI don't want to be a r"
+    },
+    {
+      "source_id": "person_parents",
+      "target_id": "emotion_proud",
+      "relation_type": "relates_to",
+      "strength": 0.9999999999999999,
+      "evidence": "I don't want to be a one woman one life person\nI want my parents within reach\nI don't want to be a r"
+    },
+    {
+      "source_id": "solution_do",
+      "target_id": "emotion_proud",
+      "relation_type": "relates_to",
+      "strength": 0.9999999999999999,
+      "evidence": "I don't want to be a one woman one life person\nI want my parents within reach\nI don't want to be a r"
+    },
+    {
+      "source_id": "place_here",
+      "target_id": "solution_do",
+      "relation_type": "relates_to",
+      "strength": 0.9999999999999999,
+      "evidence": "I don't believe in hell and heaven\nI don't want to be NORMAL\nI don't want to be that guy stuck in a "
     },
     {
       "source_id": "place_there",
-      "target_id": "place_office",
+      "target_id": "solution_do",
       "relation_type": "relates_to",
       "strength": 0.9999999999999999,
-      "evidence": "It's so irritating like every morning everyone works in unison with no unpredictability, we March pa"
+      "evidence": "I don't believe in hell and heaven\nI don't want to be NORMAL\nI don't want to be that guy stuck in a "
     },
     {
       "source_id": "place_here",
-      "target_id": "place_office",
-      "relation_type": "relates_to",
+      "target_id": "solution_do",
+      "relation_type": "supports",
       "strength": 0.9999999999999999,
-      "evidence": "It's so irritating like every morning everyone works in unison with no unpredictability, we March pa"
+      "evidence": "I don't believe in hell and heaven\nI don't want to be NORMAL\nI don't want to be that guy stuck in a "
     },
     {
-      "source_id": "person_you",
-      "target_id": "emotion_happy",
-      "relation_type": "relates_to",
-      "strength": 0.8999999999999999,
-      "evidence": "It's like you can be sad only here, you can be happy only here"
-    },
-    {
-      "source_id": "place_here",
-      "target_id": "emotion_sad",
-      "relation_type": "relates_to",
-      "strength": 0.8999999999999999,
-      "evidence": "It's like you can be sad only here, you can be happy only here"
+      "source_id": "place_there",
+      "target_id": "solution_do",
+      "relation_type": "supports",
+      "strength": 0.9999999999999999,
+      "evidence": "I don't believe in hell and heaven\nI don't want to be NORMAL\nI don't want to be that guy stuck in a "
     }
   ]
 }

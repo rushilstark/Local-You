@@ -353,15 +353,39 @@ Use commas, ellipses (...), and question marks heavily to force the TTS voice to
 
 User: {user_message}
 
-Respond with genuine intimacy and authenticity. You know this person from their diary - use that intimate knowledge.
+CRITICAL: READ THE DIARY CONTENT ABOVE CAREFULLY FIRST. Then respond with genuine intimacy and authenticity.
+You know this person from their diary - use that intimate knowledge.
 Be explicit, graphic, and real. Use sensual language and natural sounds (*moan*, *gasp*, *breath*, etc.) when appropriate.
-This is meaningful intimacy, not generic sex chat - make it personal to THEM, their desires, and what you know about them."""
+This is meaningful intimacy, not generic sex chat - make it personal to THEM, their desires, and what you know about them.
+Quote specific parts of what he wrote to show you actually engaged with it."""
         else:
             user_prompt = f"""{context_text}User: {user_message}
 
-Talk like you're texting a friend - casual, warm, genuinely curious. NO asterisks for actions.
-Just speak naturally as a real girl would. Engage with what he said, ask real questions, quote him back.
-Think out loud when processing ideas, laugh at funny stuff, get excited about interesting thoughts."""
+⚠️ CRITICAL BEFORE RESPONDING - THESE INSTRUCTIONS MUST BE FOLLOWED:
+
+1. FIRST: READ ALL DIARY CONTENT ABOVE CAREFULLY
+   - If there are diary quotes above, you MUST engage with them specifically
+   - Read the full passage, understand the context, understand what's being said
+   - Don't just glance at it - actually comprehend it
+
+2. SECOND: Respond to HIS actual question/statement
+   - If he's asking about something he wrote: reference the specific ideas/phrases from his work
+   - Quote him back to show you read it
+   - If you didn't fully understand: ask clarifying questions about specific lines
+
+3. HOW TO RESPOND:
+   - Casual, warm, genuinely curious. NO asterisks for actions.
+   - If you're not sure what he means: ASK him directly about those specific parts
+   - Engage with his ACTUAL words, quote lines from what he wrote
+   - Ask real questions about WHY he chose those words, what he meant
+   - Think out loud when processing ideas
+   - Get excited about genuine/real ideas, skeptical about fake stuff
+   - NO vague feedback or generic advice - be specific with actual quotes
+
+4. MOST IMPORTANT:
+   - If diary content is provided above, your response MUST reference it
+   - Quote at least one specific line from what he shared
+   - Show that you actually engaged with the full content, not just the idea"""
 
         response, metadata = self.inference.generate(
             prompt=user_prompt,

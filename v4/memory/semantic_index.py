@@ -82,8 +82,8 @@ class SemanticDiaryIndex:
 
         all_passages = []
         
-        # Load all diary entries
-        for txt_file in sorted(self.diary_folder.glob("*.txt")):
+        # Load all diary entries (recursively from all subfolders)
+        for txt_file in sorted(self.diary_folder.glob("**/*.txt")):
             try:
                 with open(txt_file, "r") as f:
                     content = f.read()
@@ -110,135 +110,102 @@ class SemanticDiaryIndex:
 
     def _chunk_text(self, text: str, source_file: str) -> List[Dict]:
         """
-        Split text into meaningful chunks - but KEEP LONG ESSAYS WHOLE
-        SMARTER LOGIC:
-        - Detect section headers (all caps, title case with !, repeated headers)
-        - Multiple consecutive headers = ONE section (ignore duplicates)
-        - Skip metadata lines (dates, author names)
-        - Keep essays WHOLE if > 1500 chars
+        Split text into meaningful chunks.
+        
+        Since essays are now in individual files, we can use a simpler strategy:
+        - Each file is ONE essay
+        - Split only on LARGE section breaks (3+ blank lines = new section)
+        - This preserves essay integrity while splitting very long essays
         """
         chunks = []
         
-        # First, identify ALL header patterns and group them
-        sections = []
-        current_section = []
-        current_title = None
-        seen_titles = set()  # Track titles to skip duplicates
+        # Extract essay title from filename (most reliable source)
+        # Format: "data/diary/We Said Yes.txt" → "We Said Yes"
+        import os
+        filename_without_ext = os.path.splitext(os.path.basename(source_file))[0]
+        # Replace underscores and dashes with spaces for readability
+        essay_title_from_filename = filename_without_ext.replace('_', ' ').replace('-', ' ')
         
-        def is_metadata(line: str) -> bool:
-            """Skip metadata lines like 'Rushil', 'Apr 01, 2026', 'Thank you Algorithm' etc"""
-            stripped = line.strip()
-            if not stripped:
-                return False
-            # Known metadata patterns
-            if stripped in ['Rushil', 'Rushil Reddy', 'Thank you Algorithm']:
-                return True
-            # Date pattern: "Apr 01, 2026"
-            if any(month in stripped for month in ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
-                                                     'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']):
-                if len(stripped) < 30 and any(char.isdigit() for char in stripped):
-                    return True
-            return False
+        # Also try to extract from first line as fallback
+        lines = text.split('\n')
+        essay_title = essay_title_from_filename  # Use filename as primary
         
-        def is_header(line: str) -> bool:
-            """Detect if line is a section header"""
-            stripped = line.strip()
-            if not stripped or len(stripped) > 50 or is_metadata(line):
-                return False
-            # All caps: "FUCK THIS WORLD"
-            if stripped.isupper():
-                return True
-            # Title-like with punctuation: "We Said Yes!!"
-            if len(stripped) < 30 and (stripped.endswith('!!') or 
-                                       stripped.endswith('!') or 
-                                       stripped.endswith('?') or
-                                       stripped.endswith('...')):
-                words = stripped.split()
-                if len(words) <= 5 and all(w[0].isupper() or w[0].isdigit() for w in words if w):
-                    return True
-            return False
+        if lines:
+            first_line = lines[0].strip()
+            # If first line is a proper title (not too short, not obviously content), use it
+            if first_line and 10 < len(first_line) < 100 and not first_line.startswith('('):
+                # Only override if it's clearly better than filename version
+                if first_line != filename_without_ext:
+                    essay_title = first_line
+                    
+        # Sanitize for comparison (remove punctuation, lowercase)
+        essay_title_compare = essay_title.lower().replace('!!', '').replace('?', '').replace(',', '').strip()
         
-        for line in text.split('\n'):
-            if is_header(line):
-                stripped = line.strip()
-                
-                # Skip if we've seen this exact title recently (duplicate headers)
-                if stripped in seen_titles:
-                    continue
-                seen_titles.add(stripped)
-                
-                # Save previous section if exists
-                if current_section and current_title:
-                    section_content = '\n'.join(current_section).strip()
-                    if section_content and len(section_content) > 20:
-                        sections.append({
-                            "title": current_title,
-                            "content": section_content
-                        })
-                    current_section = []
-                
-                current_title = stripped
-            else:
-                # Non-header line
-                current_section.append(line)
-        
-        # Don't forget last section
-        if current_section and current_title:
-            section_content = '\n'.join(current_section).strip()
-            if section_content and len(section_content) > 20:
-                sections.append({
-                    "title": current_title,
-                    "content": section_content
-                })
-        
-        # Now process each section: LONG essays stay WHOLE, short pieces get chunked
-        char_offset = 0
-        for section in sections:
-            content = section["content"]
-            
-            if not content or len(content) < 20:
-                continue
-            
-            # If section is LONG (essay-length: > 1500 chars), keep it WHOLE
-            if len(content) > 1500:
+        # For most essay files, just keep as ONE chunk
+        # Only split if the essay is VERY long (>500 lines)
+        if len(lines) <= 500:
+            # Keep entire file as one chunk
+            chunk_text = text.strip()
+            if chunk_text:
                 chunks.append({
-                    "text": content,
+                    "text": chunk_text,
                     "metadata": {
-                        "source": Path(source_file).name,
-                        "section": section["title"],
-                        "char_index": char_offset,
-                        "word_count": len(content.split()),
-                        "length": len(content),
-                        "type": "essay"  # Mark as full essay
+                        "source_file": source_file,
+                        "section": essay_title,  # Add essay title as "section"
+                        "char_index": 0,
+                        "word_count": len(chunk_text.split()),
+                        "timestamp": None
                     }
                 })
+            return chunks
+        
+        # For very long essays, split on major section breaks (3+ blank lines)
+        current_chunk = []
+        blank_count = 0
+        char_index = 0
+        
+        for line in lines:
+            if not line.strip():
+                blank_count += 1
+                current_chunk.append(line)
             else:
-                # SHORT content: chunk by paragraphs
-                paragraphs = content.split('\n\n')
-                
-                for para in paragraphs:
-                    cleaned = para.strip()
-                    
-                    # Keep everything > 10 chars (short poems, thoughts, lines)
-                    if cleaned and len(cleaned) > 10:
-                        chunks.append({
-                            "text": cleaned,
-                            "metadata": {
-                                "source": Path(source_file).name,
-                                "section": section["title"],
-                                "char_index": char_offset,
-                                "word_count": len(cleaned.split()),
-                                "length": len(cleaned),
-                                "type": "paragraph"
-                            }
-                        })
-                    
-                    char_offset += len(para) + 2
+                blank_count = 0
+                current_chunk.append(line)
             
-            char_offset += len(content) + 2
-
+            # Major break detected - flush current chunk
+            if blank_count >= 3:
+                chunk_text = '\n'.join(current_chunk).strip()
+                if chunk_text and len(chunk_text) > 100:  # Only save non-tiny chunks
+                    chunks.append({
+                        "text": chunk_text,
+                        "metadata": {
+                            "source_file": source_file,
+                            "section": essay_title,
+                            "char_index": char_index,
+                            "word_count": len(chunk_text.split()),
+                            "timestamp": None
+                        }
+                    })
+                    char_index += len(chunk_text)
+                
+                current_chunk = []
+                blank_count = 0
+        
+        # Don't forget the final chunk
+        chunk_text = '\n'.join(current_chunk).strip()
+        if chunk_text and len(chunk_text) > 100:
+            chunks.append({
+                "text": chunk_text,
+                "metadata": {
+                    "source_file": source_file,
+                    "section": essay_title,
+                    "char_index": char_index,
+                    "word_count": len(chunk_text.split()),
+                    "timestamp": None
+                }
+            })
+        
         return chunks
-
     def _save_to_cache(self):
         """Save embeddings and metadata to disk"""
         try:
@@ -289,13 +256,18 @@ class SemanticDiaryIndex:
         """
         Retrieve relevant passages using semantic + keyword hybrid search
         
+        Strategy:
+        1. TITLE MATCHING: If query contains essay title words → return that essay's passages
+        2. SEMANTIC SEARCH: Find passages most similar to query semantically
+        3. KEYWORD BOOST: Amplify scores when keywords match content
+        
         Args:
             query: User's message/question
             top_k: Number of passages to return
             use_keywords: Also use keyword matching for robustness
         
         Returns:
-            List of most relevant passage texts
+            List of most relevant passage texts (no duplicates)
         """
         if not self.indexed or not self.passages:
             return []
@@ -304,12 +276,61 @@ class SemanticDiaryIndex:
             # Fallback to keyword matching if model not available
             return self._keyword_retrieve(query, top_k)
 
-        # Check if query mentions a specific essay title (like "We Said Yes")
-        # If so, PRIORITIZE that section
         query_lower = query.lower()
-        title_bonus = 5.0  # High priority for exact title matches
         
-        # Semantic search: embed query and find similar passages
+        # ====================================================================
+        # STEP 1: AGGRESSIVE TITLE DETECTION
+        # If user asks about specific essay, retrieve ALL passages from it
+        # ====================================================================
+        essay_passages = {}  # title_normalized -> list of passages
+        
+        for passage in self.passages:
+            section = passage.metadata.get("section", "").lower()
+            if section and len(section) > 3:
+                # Normalize title for comparison (remove punctuation, extra spaces)
+                section_normalized = section.replace('!!', '').replace('?', '').replace(',', '').strip()
+                if section_normalized not in essay_passages:
+                    essay_passages[section_normalized] = []
+                essay_passages[section_normalized].append(passage)
+        
+        # Check if query contains essay title keywords
+        query_words = set(w for w in query_lower.split() if len(w) > 2)
+        best_match_title = None
+        best_match_score = 0
+        
+        for title, passages_list in essay_passages.items():
+            title_words = set(w for w in title.split() if len(w) > 2)
+            if not title_words:
+                continue
+            
+            # Calculate word overlap between query and title
+            overlap = len(title_words & query_words)
+            
+            # If found matching words, this is likely the essay they're asking about
+            if overlap > 0:
+                if overlap > best_match_score:
+                    best_match_score = overlap
+                    best_match_title = title
+                elif overlap == best_match_score and title and len(title) < len(best_match_title or ""):
+                    # If tied, prefer shorter title (more specific)
+                    best_match_title = title
+        
+        # If we found a strong title match, return those passages
+        if best_match_title and best_match_score >= 1:
+            results = [p.text for p in essay_passages[best_match_title]]
+            # Remove duplicates while preserving order
+            seen = set()
+            unique_results = []
+            for r in results[:top_k]:
+                r_hash = hash(r[:50])  # Use first 50 chars as proxy
+                if r_hash not in seen:
+                    unique_results.append(r)
+                    seen.add(r_hash)
+            return unique_results[:top_k]
+        
+        # ====================================================================
+        # STEP 2: SEMANTIC SEARCH (fallback if no title match)
+        # ====================================================================
         query_embedding = self.model.encode(query)
         
         scored = []
@@ -318,27 +339,14 @@ class SemanticDiaryIndex:
             similarity = float(np.dot(query_embedding, passage.embedding) / 
                              (np.linalg.norm(query_embedding) * np.linalg.norm(passage.embedding) + 1e-8))
             
-            # HUGE BOOST: If query mentions the section title, boost it massively
-            section_title = passage.metadata.get("section", "").lower()
-            if section_title and len(section_title) > 3:
-                # Check if any words from section title appear in query
-                title_words = set(section_title.split())
-                query_words = set(query_lower.split())
-                if title_words & query_words:  # Any word match
-                    similarity *= title_bonus
-            
-            # Apply keyword boost (if keywords match, boost score)
+            # Apply keyword boost if enabled
             if use_keywords:
                 keyword_boost = self._keyword_boost(query, passage.text)
-                similarity = similarity * (1 + keyword_boost)
+                similarity = similarity * (1 + keyword_boost * 0.5)
             
             # Apply recency weight (newer passages slightly preferred)
             if idx in self.recency_weights:
                 similarity *= (1 + self.recency_weights[idx] * 0.1)
-            
-            # Bonus for full essays (more context is better)
-            if passage.metadata.get("type") == "essay":
-                similarity *= 1.5  # Prefer full essays
             
             scored.append({
                 "text": passage.text,
@@ -346,7 +354,7 @@ class SemanticDiaryIndex:
                 "metadata": passage.metadata
             })
 
-        # Return top passages
+        # Sort by relevance and return top passages
         top = sorted(scored, key=lambda x: x["score"], reverse=True)[:top_k]
         return [p["text"] for p in top]
 
@@ -395,26 +403,86 @@ class SemanticDiaryIndex:
 
     def get_context(self, user_message: str, num_passages: int = 3) -> str:
         """
-        Get formatted diary context to include in LLM prompt
-        IMPORTANT: Shows actual quotes to encourage real engagement
+        Format diary context for LLM prompt with intelligent presentation.
+        
+        Strategy:
+        - Single essay (num_passages=1): Show FULL TEXT with clear boundaries
+        - Multiple passages: Show with source attribution and smart truncation
+        - Always: Include instruction to engage with specific content
         """
         passages = self.retrieve(user_message, top_k=num_passages)
         
         if not passages:
             return ""
         
-        context = "\n[📖 RELEVANT DIARY QUOTES - Engage with these specifically]\n"
-        for i, passage in enumerate(passages, 1):
-            # Show more of the passage (min 150 chars to see real meaning)
-            if len(passage) <= 300:
-                display_text = passage
-            else:
-                # Show start + middle for long passages
-                display_text = passage[:200] + "\n...[middle excerpt]...\n" + passage[-100:]
+        if len(passages) == 1 and num_passages == 1:
+            # ================================================================
+            # SINGLE ESSAY MODE: Complete text with essay title
+            # ================================================================
+            essay_text = passages[0]
             
-            context += f"\n{i}. \"{display_text}\"\n"
-        
-        context += "\n[INSTRUCTION: Quote from these passages in your response. Engage with specific lines, not vague summaries.]\n"
+            # Extract essay title from first line (most likely to be title)
+            lines = essay_text.split('\n')
+            essay_title = lines[0].strip() if lines else "Essay"
+            
+            # Validate it looks like a title (not too short, not content)
+            if not (10 < len(essay_title) < 100 and not essay_title.startswith('(')):
+                essay_title = "Essay"
+            
+            # Format with clear visual boundaries
+            context = "\n" + "╔" + "═"*78 + "╗\n"
+            context += f"║ 📖 ESSAY: {essay_title:<70} ║\n"
+            context += "╠" + "═"*78 + "╣\n"
+            context += "║                                                                              ║\n"
+            context += "╚" + "═"*78 + "╝\n\n"
+            context += essay_text
+            context += "\n\n" + "╔" + "═"*78 + "╗\n"
+            context += "║ ⚠️  READ THE ENTIRE ESSAY ABOVE CAREFULLY                                    ║\n"
+            context += "║                                                                              ║\n"
+            context += "║ RESPOND TO HIS ACTUAL QUESTION/STATEMENT - Quote specific lines.              ║\n"
+            context += "╚" + "═"*78 + "╝\n"
+            
+        else:
+            # ================================================================
+            # MULTIPLE PASSAGES MODE: Better formatting with source info
+            # ================================================================
+            context = "\n" + "┌" + "─"*78 + "┐\n"
+            context += "│ � RELEVANT DIARY PASSAGES                                                    │\n"
+            context += "└" + "─"*78 + "┘\n"
+            
+            for i, passage in enumerate(passages, 1):
+                # Extract essay/section info if available
+                source = "Diary Entry"
+                
+                # Try to find the source from passage metadata
+                for p in self.passages:
+                    if p.text == passage:
+                        section = p.metadata.get("section", "")
+                        if section:
+                            source = section
+                        break
+                
+                # Smart truncation for display
+                if len(passage) <= 400:
+                    display_text = passage
+                else:
+                    # Show: beginning + indicator + end
+                    start_len = 180
+                    end_len = 160
+                    omitted = len(passage) - start_len - end_len
+                    display_text = (
+                        passage[:start_len].rstrip() +
+                        f"\n\n[... {omitted} characters omitted ...]\n\n" +
+                        passage[-end_len:].lstrip()
+                    )
+                
+                context += f"\n┌─ Passage {i}: {source} " + "─"*(65-len(source)) + "┐\n"
+                context += display_text
+                context += f"\n└─" + "─"*76 + "┘\n"
+            
+            context += "\n" + "┌" + "─"*78 + "┐\n"
+            context += "│ 📌 Quote specific lines from above passages when responding                   │\n"
+            context += "└" + "─"*78 + "┘\n"
         
         return context
 
