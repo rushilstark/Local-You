@@ -85,9 +85,9 @@ def main():
                     processed = digital_twin.process_response(user_input, result)
                     response = result
                     
-                    # Show honest feedback if there are concerns
-                    if processed.get("honest_feedback"):
-                        print(f"\n{Color.WARNING}⚠ Honest Take: {processed['honest_feedback']}{Color.RESET}")
+                    # Note: Honest feedback disabled - focus on genuine engagement with diary content
+                    # if processed.get("honest_feedback"):
+                    #     print(f"\n{Color.SYNTHESIS}⚠ Honest Take: {processed['honest_feedback']}{Color.RESET}")
                     
                     digital_twin.remember_conversation(user_input, result)
                 else:

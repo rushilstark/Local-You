@@ -109,36 +109,85 @@ class SemanticDiaryIndex:
                 self.passages.append(embedded)
 
     def _chunk_text(self, text: str, source_file: str) -> List[Dict]:
-        """Split text into meaningful chunks - but KEEP LONG ESSAYS WHOLE"""
+        """
+        Split text into meaningful chunks - but KEEP LONG ESSAYS WHOLE
+        SMARTER LOGIC:
+        - Detect section headers (all caps, title case with !, repeated headers)
+        - Multiple consecutive headers = ONE section (ignore duplicates)
+        - Skip metadata lines (dates, author names)
+        - Keep essays WHOLE if > 1500 chars
+        """
         chunks = []
         
-        # First, split by titled sections (all caps, short lines)
+        # First, identify ALL header patterns and group them
         sections = []
         current_section = []
-        section_title = ""
+        current_title = None
+        seen_titles = set()  # Track titles to skip duplicates
+        
+        def is_metadata(line: str) -> bool:
+            """Skip metadata lines like 'Rushil', 'Apr 01, 2026', 'Thank you Algorithm' etc"""
+            stripped = line.strip()
+            if not stripped:
+                return False
+            # Known metadata patterns
+            if stripped in ['Rushil', 'Rushil Reddy', 'Thank you Algorithm']:
+                return True
+            # Date pattern: "Apr 01, 2026"
+            if any(month in stripped for month in ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
+                                                     'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']):
+                if len(stripped) < 30 and any(char.isdigit() for char in stripped):
+                    return True
+            return False
+        
+        def is_header(line: str) -> bool:
+            """Detect if line is a section header"""
+            stripped = line.strip()
+            if not stripped or len(stripped) > 50 or is_metadata(line):
+                return False
+            # All caps: "FUCK THIS WORLD"
+            if stripped.isupper():
+                return True
+            # Title-like with punctuation: "We Said Yes!!"
+            if len(stripped) < 30 and (stripped.endswith('!!') or 
+                                       stripped.endswith('!') or 
+                                       stripped.endswith('?') or
+                                       stripped.endswith('...')):
+                words = stripped.split()
+                if len(words) <= 5 and all(w[0].isupper() or w[0].isdigit() for w in words if w):
+                    return True
+            return False
         
         for line in text.split('\n'):
-            # Detect section headers (all caps, < 50 chars)
-            if line.strip().isupper() and len(line.strip()) < 50 and line.strip():
+            if is_header(line):
+                stripped = line.strip()
+                
+                # Skip if we've seen this exact title recently (duplicate headers)
+                if stripped in seen_titles:
+                    continue
+                seen_titles.add(stripped)
+                
                 # Save previous section if exists
-                if current_section:
+                if current_section and current_title:
                     section_content = '\n'.join(current_section).strip()
-                    if section_content:
+                    if section_content and len(section_content) > 20:
                         sections.append({
-                            "title": section_title,
+                            "title": current_title,
                             "content": section_content
                         })
-                section_title = line.strip()
-                current_section = []
+                    current_section = []
+                
+                current_title = stripped
             else:
+                # Non-header line
                 current_section.append(line)
         
         # Don't forget last section
-        if current_section:
+        if current_section and current_title:
             section_content = '\n'.join(current_section).strip()
-            if section_content:
+            if section_content and len(section_content) > 20:
                 sections.append({
-                    "title": section_title,
+                    "title": current_title,
                     "content": section_content
                 })
         
@@ -255,6 +304,11 @@ class SemanticDiaryIndex:
             # Fallback to keyword matching if model not available
             return self._keyword_retrieve(query, top_k)
 
+        # Check if query mentions a specific essay title (like "We Said Yes")
+        # If so, PRIORITIZE that section
+        query_lower = query.lower()
+        title_bonus = 5.0  # High priority for exact title matches
+        
         # Semantic search: embed query and find similar passages
         query_embedding = self.model.encode(query)
         
@@ -264,6 +318,15 @@ class SemanticDiaryIndex:
             similarity = float(np.dot(query_embedding, passage.embedding) / 
                              (np.linalg.norm(query_embedding) * np.linalg.norm(passage.embedding) + 1e-8))
             
+            # HUGE BOOST: If query mentions the section title, boost it massively
+            section_title = passage.metadata.get("section", "").lower()
+            if section_title and len(section_title) > 3:
+                # Check if any words from section title appear in query
+                title_words = set(section_title.split())
+                query_words = set(query_lower.split())
+                if title_words & query_words:  # Any word match
+                    similarity *= title_bonus
+            
             # Apply keyword boost (if keywords match, boost score)
             if use_keywords:
                 keyword_boost = self._keyword_boost(query, passage.text)
@@ -272,6 +335,10 @@ class SemanticDiaryIndex:
             # Apply recency weight (newer passages slightly preferred)
             if idx in self.recency_weights:
                 similarity *= (1 + self.recency_weights[idx] * 0.1)
+            
+            # Bonus for full essays (more context is better)
+            if passage.metadata.get("type") == "essay":
+                similarity *= 1.5  # Prefer full essays
             
             scored.append({
                 "text": passage.text,

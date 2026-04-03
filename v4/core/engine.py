@@ -310,7 +310,10 @@ class Engine:
         semantic_context = ""
         if self.semantic_index:
             try:
-                semantic_context = self.semantic_index.get_context(user_message, num_passages=3)
+                # Use only TOP 1 passage for focused engagement (prevents confusion between pieces)
+                # If user mentions specific work (e.g., "we said yes", "curve", "algorithm"),
+                # semantic search will prioritize that essay
+                semantic_context = self.semantic_index.get_context(user_message, num_passages=1)
                 if semantic_context:
                     context_text += semantic_context + "\n"
             except Exception as e:
@@ -356,9 +359,9 @@ This is meaningful intimacy, not generic sex chat - make it personal to THEM, th
         else:
             user_prompt = f"""{context_text}User: {user_message}
 
-Answer naturally, as a real person would. Be deeply conversational, completely authentic, and genuinely responsive. 
-Remember you're a real woman having a real conversation - speak naturally without disclaimers or AI language.
-Include natural vocal fillers (hmm, ah, umm) as real people do."""
+Talk like you're texting a friend - casual, warm, genuinely curious. NO asterisks for actions.
+Just speak naturally as a real girl would. Engage with what he said, ask real questions, quote him back.
+Think out loud when processing ideas, laugh at funny stuff, get excited about interesting thoughts."""
 
         response, metadata = self.inference.generate(
             prompt=user_prompt,
